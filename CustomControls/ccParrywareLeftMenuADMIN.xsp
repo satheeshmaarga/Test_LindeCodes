@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+		<xp:styleSheet href="/HomePage.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:panel styleClass="parrywareLeftMenuContainer">
+		<xp:br></xp:br>
+		<xp:table style="width:100%"
+			styleClass="parrywareSideNavTable">
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItems"
+					style="padding-left:10%">
+					<xp:label value="Admin" id="label5"
+						style="font-weight:bold">
+					</xp:label>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">
+					<xp:link escape="true" text="All Discounts"
+						id="link7" value="/xpParrywareRocaAdmin.xsp"
+						style="padding-left:%">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%">
+					<xp:label id="label6"
+						styleClass="parrywareLeftMenuItems">
+
+					</xp:label>
+					<xp:link escape="true" text="Archive Configuration"
+						id="link1" style="padding-left:%"
+						value="/xpRocaConfigArchive.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%">
+					<xp:label id="label7"
+						styleClass="parrywareLeftMenuItems">
+
+					</xp:label>
+					<xp:link escape="true" text="Area Configuration"
+						id="link2" value="/xpRocaConfigArea.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%">
+
+					<xp:link escape="true" text="Area SE" id="link3"
+						value="/xpRocaConfigAreaSE.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%" rendered="false">
+					<xp:link escape="true" text="Email Configuration"
+						id="link4" value="/xpRocaConfigEmail.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%">
+					<xp:link escape="true" text="Proposal Number"
+						id="link5" value="/xpRocaConfigProposalNumber.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%">
+					<xp:link escape="true" text="Discount Category"
+						id="link6" value="/xpRocaConfigDiscountCategory.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					style="padding-left:20.0%">
+
+					&#160;&#160;&#160;&#160;&#160;
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td
+					styleClass="parrywareLeftMenuSectionItemsBottomBordered">
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td>&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td style="padding-left:10.0%"
+					styleClass="parrywareLeftMenuSectionItems">
+					<xp:label value="Tools" id="label1"
+						style="font-weight:bold">
+					</xp:label>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">
+					&#160;&#160;&#160;
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection" id="td1">
+					<xp:link escape="true" text="Search Phase 1"
+						id="link18" value="/xpRocaSearchAdmin_Phase1.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">
+
+					<xp:link escape="true" text="Search Phase 2"
+						id="link22" value="/xpRocaSearchAdmin_Phase2.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">
+					<xp:link escape="true" text="Search Phase 3"
+						id="link8" value="/xpRocaSDSearchAdmin_Phase1.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">
+					<xp:link escape="true" text="Search Phase 4"
+						id="link9" value="/xpRocaSDSearchAdmin_Phase2.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItemsBottomBordered">					
+				</xp:td>
+			</xp:tr>
+		</xp:table>
+	</xp:panel>
+
+</xp:view>

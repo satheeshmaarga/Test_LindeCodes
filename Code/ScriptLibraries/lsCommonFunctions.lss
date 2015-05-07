@@ -1,0 +1,219 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library lsCommonFunctions
+	Created Sep 3, 2010 by Vasan Dev1/org
+	@Modified : August-05-2011.
+	@Author   : Krishnamoorthi P
+	Description: Comments for Library
+%END REM
+Option Public
+Option Declare
+
+Use "lsLogActivity"
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub Initialize()
+Declare Function getRSMName(configDoc As NotesDocument) 
+Declare Function getRLMName(configDoc As NotesDocument)
+Declare Function getLookupDoc(seName As String) As NotesDocument
+Declare Function getoepName(configDoc As NotesDocument)
+Declare Function upDateAudit(activity As String,isWebTriggered As Boolean)
+Declare Function getMKTGName(configDoc As NotesDocument)
+Declare Function getSEName(configDoc As NotesDocument)
+Declare Function getRAMName(configDoc As NotesDocument) As String
+Declare Function getMDName(configDoc As NotesDocument) 
+Declare Function getLEName(configDoc As NotesDocument)
+Declare Function getVPName(configDoc As NotesDocument)
+Declare Function getNSMName(configDoc As NotesDocument)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+	Const AUDIT_SNO_FIELD="txtAudit_SNo"
+	Const AUDIT_USERNAME_FIELD="txtAudit_UserName"
+	Const AUDIT_DATE_FIELD="txtAudit_Date"
+	Const AUDIT_ACTIVITY_FIELD="txtAudit_Activity"
+	Const SE_NAME_FIELD="SEname"
+	Const VP_NAME_FIELD="VPname"
+	Const MD_NAME_FIELD="MDname"
+	Const RSM_NAME_FIELD="RSMname"
+	Const MKTG_NAME_FIELD="MKTGname"
+	Const NSM_NAME_FIELD="NSMname"
+	Const RLM_NAME_FIELD="RLMName"
+	Const OEP_NAME_FIELD="OEPName"
+
+
+'++LotusScript Development Environment:2:2:Initialize:1:10
+Sub Initialize()
+	
+End Sub
+
+'++LotusScript Development Environment:2:1:getRSMName:2:8
+
+Function getRSMName(configDoc As NotesDocument) 
+	getRSMName=configDoc.Getitemvalue(RSM_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getRLMName:2:8
+
+Function getRLMName(configDoc As NotesDocument)
+	getRLMName=configDoc.Getitemvalue(RLM_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getLookupDoc:5:8
+%REM
+	Function getLookupDoc
+	Description: Comments for Function
+%END REM
+Function getLookupDoc(seName As String) As NotesDocument
+
+	'Error Handler Function
+	On Error GoTo errHandler
+	
+	Dim session As New NotesSession
+	Dim curDB As NotesDatabase
+	Dim areaConfigView As NotesView
+	Dim areaConfigDoc As NotesDocument
+	
+	Set curDB=session.Currentdatabase
+	
+	'Get area configuration view handle
+	Set areaConfigView=curDB.Getview("vwConfigArea")
+	If areaConfigView Is Nothing Then
+		Print "areaConfigView handle is not get"
+		Exit Function 
+	End If
+	'Get the area configuration document based on ASM name
+	Set areaConfigDoc=areaConfigView.Getdocumentbykey(seName,True)
+	Set getLookupDoc=areaConfigDoc
+	Exit Function
+	
+errHandler:
+	'Print "Error in getLookupDoc function: "+Error+" at line number: "+CStr(Erl)
+	Exit Function
+End Function
+
+'++LotusScript Development Environment:2:1:getoepName:1:8
+Function getoepName(configDoc As NotesDocument)
+	getoepName=configDoc.Getitemvalue(OEP_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:upDateAudit:1:8
+Function upDateAudit(activity As String,isWebTriggered As Boolean)
+	'******************************************************************************************
+	'@Author:	Karthikeyan A
+	'@Created:	03-Sep-2010
+	'@Type:		Function
+	'@Purpose:	To perform the audit Trial functionality
+	'@Name:		upDateAudit
+	'@Param:	activity As String - the information that you want to update the audit trial with
+	'@Param:	isWebTriggered As boolean - true : indicates the function is triggered from web
+	'			and false: indicates other wise 
+	'@Update History:
+	'******************************************************************************************
+
+	'declare all variables and objects necessary for further manipulation
+	Dim session As New NotesSession
+	Dim currDoc As NotesDocument
+	Dim sno As String
+	Dim userNames As String
+	Dim dates As String
+	Dim activities As String
+	Dim totalElements As Integer
+	Dim snoArray As Variant
+	Dim currUserName As NotesName
+	Dim currUser As String
+	
+	'handle errors in case of abrupt termination
+	On Error GoTo errHandler
+	
+	Call logInit()
+	Call logUpdate("log initialized")
+	
+	'get the handle for the current user name's object
+	Set currUserName=session.CreateName(session.EffectiveUserName)
+	MsgBox currUserName.Abbreviated
+	'if the current document is a new document the updaet audit and exit
+	If currDoc.Isnewnote Then
+		Call currDoc.Replaceitemvalue(AUDIT_SNO_FIELD,"1")
+	'	Call currDoc.Replaceitemvalue(AUDIT_USERNAME_FIELD,currUserName)
+		Call currDoc.Replaceitemvalue(AUDIT_DATE_FIELD,CStr(Now))
+		Call currDoc.Replaceitemvalue(AUDIT_ACTIVITY_FIELD,activity)		
+	Else
+		'if the document is not a new one then get the existing values and prepend the 
+		'activity on top of them
+		snoArray=currDoc.GetItemValue(AUDIT_SNO_FIELD)		
+		totalElements=UBound(snoArray)+1
+		sno= Join(currDoc.getItemValue(AUDIT_SNO_FIELD),";")			
+		userNames= Join(currDoc.getItemValue(AUDIT_USERNAME_FIELD),";")		
+		dates= Join(currDoc.getItemValue(AUDIT_DATE_FIELD),";")
+		activities= Join(currDoc.getItemValue(AUDIT_ACTIVITY_FIELD),";")
+
+		sno=sno & ";" & CStr(totalElements+1)
+		userNames=currUserName.Abbreviated & ";" & userNames 
+		dates= CStr(Now) & ";" & dates
+		activities= activity & ";" & activities
+
+		Call currDoc.Replaceitemvalue(AUDIT_SNO_FIELD,sno)
+		Call currDoc.Replaceitemvalue(AUDIT_USERNAME_FIELD,userNames)
+		Call currDoc.Replaceitemvalue(AUDIT_DATE_FIELD,dates)
+		Call currDoc.Replaceitemvalue(AUDIT_ACTIVITY_FIELD,activities)
+	End If
+	
+	Call currDoc.save(True,False)
+	
+	Exit Function
+errHandler:
+	MsgBox "Error : " & Error & " occured on line :" & CStr(Err) & " with number :" & CStr(Erl) & " in function upDateAudit(activity As String)",,"Compilation error"
+	Exit Function
+	
+End Function
+
+'++LotusScript Development Environment:2:1:getMKTGName:5:8
+%REM
+	Function getMKTGName
+	Description: Comments for Function
+%END REM
+Function getMKTGName(configDoc As NotesDocument)
+	getMKTGName=configDoc.Getitemvalue(MKTG_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getSEName:1:8
+Function getSEName(configDoc As NotesDocument)
+	getSEName=configDoc.Getitemvalue(SE_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getRAMName:1:8
+Function getRAMName(configDoc As NotesDocument) As String
+	getRAMName=configDoc.Getitemvalue("RAMname")(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getMDName:2:8
+
+Function getMDName(configDoc As NotesDocument) 
+	getMDName=configDoc.Getitemvalue(MD_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getLEName:5:8
+%REM
+	Function getLEName
+	Description: Comments for Function
+%END REM
+Function getLEName(configDoc As NotesDocument)
+	getLEName=configDoc.Getitemvalue("LEname")(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getVPName:1:8
+Function getVPName(configDoc As NotesDocument)
+	getVPName=configDoc.Getitemvalue(VP_NAME_FIELD)(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getNSMName:5:8
+%REM
+	Function getNSMName
+	Description: Comments for Function
+%END REM
+Function getNSMName(configDoc As NotesDocument)
+	getNSMName=configDoc.Getitemvalue(NSM_NAME_FIELD)(0)
+End Function
+
+
+

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='32a' unid='6067B0E6D9F7D25C65257796001B3DFF' sequence='27'>
+<created><datetime>20100906T102733,43+0530</datetime></created>
+<modified><datetime>20140204T114954,52+0530</datetime></modified>
+<revised><datetime>20140204T114954,51+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114954,51+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160220,00+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev2/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=1 Developer/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Karthikeyan A/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Fields'><text>SSGAOE</text></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><textlist><text>frmMyRequest</text><text>MyRequest</text></textlist></item>
+<item name='$Info' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>MyRequest</text></item>
+<item name='$Body' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAqBAoMEAQCF/wgA
+AQAACoECgwQBAIX/CAABAAAKgQKDBAEAhf8IAAEAAAqBAoMEAQCF/wgAAQAACoECgwQBAIX/CAAB
+AAAK3QYAAK3/cf8tAAAAAAADAAIACwAAAAAAAAAAAAAAAAAAAAAAAAAAAHZ3QnlTdGF0dXMAAK3/
+FwATAAgAAAALAHZ3QnlTdGF0dXMAAOr/PgATAAhEAACwE0ALAQAACgAAAAAAAAAAAQAACgEAAAoA
+AAUA////AAEAAAAAAAAAAAAAAAAAAAAAAAAA7f9CAAIAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAA
+AAAiAAAAFAACAAUAAAAAAAAA9AC0AgMABwAMAAUACTBTMEUArgLeBgAArgCF/wgAAQAACoECgwQB
+AIX/CAABAAAK
+</rawitemdata></item></note>
+

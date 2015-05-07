@@ -1,0 +1,64 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library fnGetMailID
+	Created Sep 3, 2010 by Vasan Dev1/org
+	Description: Comments for Library
+%END REM
+Option Public
+Option Declare
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub Initialize()
+Declare Function getRSMName(configDoc As NotesDocument) 
+Declare Function getMDName(configDoc As NotesDocument) 
+Declare Function getVPName(configDoc As NotesDocument)
+Declare Function getNSMName(configDoc As NotesDocument) As String
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+Dim session As NotesSession
+Dim curDB As NotesDatabase
+
+
+'++LotusScript Development Environment:2:2:Initialize:1:10
+Sub Initialize()
+	
+End Sub
+
+
+
+'++LotusScript Development Environment:2:1:getRSMName:5:8
+%REM
+	Function getRSMName
+	Description: Comments for Function
+%END REM
+Function getRSMName(configDoc As NotesDocument) 
+	getRSMName=configDoc.Getitemvalue("RSMname")(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getMDName:5:8
+%REM
+	Function getMDName
+	Description: Comments for Function
+%END REM
+Function getMDName(configDoc As NotesDocument) 
+	getMDName=configDoc.Getitemvalue("MDname")(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getVPName:5:8
+%REM
+	Function getVPName
+	Description: Comments for Function
+%END REM
+Function getVPName(configDoc As NotesDocument)
+	getVPName=configDoc.Getitemvalue("VPname")(0)
+End Function
+
+'++LotusScript Development Environment:2:1:getNSMName:5:8
+%REM
+	Function getNSMName
+	Description: Comments for Function
+%END REM
+Function getNSMName(configDoc As NotesDocument) As String
+	getNSMName=configDoc.Getitemvalue("NSMname")(0)
+End Function

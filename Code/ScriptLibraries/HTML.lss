@@ -1,0 +1,161 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library HTML
+	Created Nov 29, 2010 by 2 Developer/maarga
+	Description: Comments for Library
+%END REM
+Option Public
+Option Declare
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Function tableCnt (x As Variant, y As Variant) As String
+Declare Function htmlContent(doc As NotesDocument)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:2
+
+'++LotusScript Development Environment:2:1:tableCnt:5:8
+%REM
+	Function tableCnt
+	Description: Comments for Function
+%END REM
+Function tableCnt (x As Variant, y As Variant) As String
+	Dim retStr As String
+	Dim i As Integer
+	
+	For i=0 To UBound(x)
+		retStr="<tr>"
+		retStr="<td>"+x(i)+"</td>"
+		retStr="<td>"+y(i)+"</td>"
+		retStr="</tr>"
+	Next
+		%rem
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		<tr>
+		<td >Proposal Number</td>
+		<td >doc.txtproposalno(0)</td>
+		</tr>
+		</table>
+		%endrem
+	
+End Function
+
+'++LotusScript Development Environment:2:1:htmlContent:5:8
+%REM
+	Function htmlContent
+	Description: Comments for Function
+%END REM
+Function htmlContent(doc As NotesDocument)
+	Dim htmlStr As String
+	Dim cnstVal(0 To 7), docVal(0 To 7) As Variant
+	Dim disCnstVal(0 To 8), disVal(0 To 8), disPercentage(0 To 8) As Variant
+	Dim i As integer
+	
+	htmlStr="<HTML>"+Chr(13)+"<Head></Head>"+Chr(13)+"<body>"
+	htmlStr=htmlStr+Chr(13)+"<table>"+Chr(13)
+		
+	'initializing table left side constant
+		cnstVal(0)="Proposal Number"
+		cnstVal(1)="Order Type"
+		cnstVal(2)="ASM"
+		cnstVal(3)="Project Name"
+		cnstVal(4)="Address"
+		cnstVal(5)="TIN Number"
+		cnstVal(6)="Customer Name"
+		cnstVal(7)="Builder Name"
+		
+	'fetching the right side value from the document
+		docVal(0)=doc.txtproposalno(0)
+		docVal(1)=doc.cOrderType(0)
+		docVal(2)=doc.cAsm(0)
+		docVal(3)=doc.txtProjectNm(0)
+		docVal(4)=doc.txtAddressLine1(0)
+		docVal(5)=doc.txtTinNum(0)
+		docVal(6)=doc.txtCustomerNm(0)
+		docVal(7)=doc.txtAddressLine2(0)
+		
+		
+		For i=0 To UBound(cnstVal)
+		htmlStr=htmlStr+"<tr>"
+		htmlStr=htmlStr+"<td>"+cnstVal(i)+"</td>"
+		htmlStr=htmlStr+"<td>"+docVal(i)+"</td>"
+		htmlStr=htmlStr+"</tr>"
+	Next
+	
+		htmlStr=htmlStr+Chr(13)+"<br><br>"
+		
+		'initializing table left side constant
+		disCnstVal(0)="Category"
+		disCnstVal(1)="PW Sanware"
+		disCnstVal(2)="JP Sanware"
+		disCnstVal(3)="Allied products"
+		disCnstVal(4)="TAPS"
+		disCnstVal(5)="Crestia/Glomour Range"
+		disCnstVal(6)="Roca Sanware & Tiles"
+		disCnstVal(7)="Roca Taps"
+		disCnstVal(8)="Totals"
+		
+	'fetching the right side value from the document
+		disVal(0)="Value"
+		disVal(0)=doc.nmpws(0)
+		disVal(1)=doc.nmjps(0)
+		disVal(2)=doc.nmaps(0)
+		disVal(3)=doc.nmtaps(0)
+		disVal(4)=doc.nmcgr(0)
+		disVal(5)=doc.nmrst(0)
+		disVal(6)=doc.nmrts(0)
+		disVal(7)=doc.nmtotals(0)
+		
+		'fetching the discount from the document
+		disPercentage(0)="Discount"
+		disPercentage(0)=doc.nmdpws(0)
+		disPercentage(1)=doc.nmdjps(0)
+		disPercentage(2)=doc.nmdaps(0)
+		disPercentage(3)=doc.nmdtaps(0)
+		disPercentage(4)=doc.nmdcgr(0)
+		disPercentage(5)=doc.nmdrst(0)
+		disPercentage(6)=doc.nmdrts(0)
+		disPercentage(7)=""
+		
+		For i=0 To UBound(disCnstVal)
+		htmlStr=htmlStr+"<tr>"
+		htmlStr=htmlStr+"<td>"+disCnstVal(i)+"</td>"
+		htmlStr=htmlStr+"<td>"+disVal(i)+"</td>"
+		htmlStr=htmlStr+"<td>"+disPercentage(i)+"</td>"
+		htmlStr=htmlStr+"</tr>"
+	Next
+			
+		htmlStr=htmlStr+Chr(13)+"<br><br>"
+		
+		htmlStr=html+Chr(13)+"<a href="+ doc.Httpurl +"> Click here to view document </a>"
+		
+		htmlStr=html+Chr(13)+"</body>"+Chr(13)+"</HTML>"				
+
+End Function

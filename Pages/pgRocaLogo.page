@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='40a' unid='2F528E5BCEA1758A65257798002326B8' sequence='23'>
+<created><datetime>20100908T115356,72+0530</datetime></created>
+<modified><datetime>20140204T114953,43+0530</datetime></modified>
+<revised><datetime>20140204T114953,42+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114953,42+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160221,10+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev1/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><textlist><text>pgRocaLogo</text><text>RocaLogo</text></textlist></item>
+<item name='$Info' sign='true'>
+<rawitemdata type='1'>
+hhgHAIAAAAAAgAAAKAABALnX8wAQAAAA
+</rawitemdata></item>
+<item name='$Flags'><text>C34WQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>RocaLogo</text></item>
+<item name='$Body' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAiBAoL/WgACAAAA
+AAAAAAAAoAUAAKAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA
+AAAAlIUAAAAAoAUKAAAAAAABAAAABAAAAIMEAgDdBgEA+//7/ywAAAAAAAEBAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAEAAAAAAAAAAAAAAFz/PgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAOAAAAAAAAAAEAAAoAAAAAAQAAAAAA3gYBAPv/ow6gBSgAPAAAAAAAAgCkEgAAoAVHLwAA
+AAIAAAEBAACBAoL/WgADAAAAAAAAAAAAoAVHL6AFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAhgEAAAAAVIcAAAAAAAAAAAAAAAABAAAABAAAAIMEAwCF/wgAAQAACt0G
+AQCZAJkAHAAAAH4JVwMAAAAAAAAAAAAAAAABAAEAAAB9ABwAAAACAKoARwAAAAAAAAAAAAAAAAAA
+AAAA9v8qAAAAAAADABMACAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxvZ28uSlBH3gYBAJkAhf8IAAEA
+AAqlBgAAAACBAoMEAQCF/wgAAQAACg==
+</rawitemdata></item></note>
+

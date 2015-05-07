@@ -1,0 +1,335 @@
+/*
+	Style for outlines
+*/
+div.entirePage{
+	position:absolute;
+	float:left;
+	width:100%;
+	height:100%;
+}
+
+div.content{
+	position:relative;
+	float:left;
+	width:89.5%;
+	height:100%;
+	/*border:1px solid black;*/
+	background-color:white;
+}
+
+div.margin{
+	position:relative;
+	float:left;
+	width:5%;
+	height:100%;
+}
+
+
+/*-------------------------------------------
+	Style for header div
+-------------------------------------------*/
+div.header{
+	position:relative;
+	float:left;
+	width: 99%;
+	height: 8%;
+	top:-5px;
+	align:center;
+	margin-left:2px;
+	/*border:1px solid black;*/
+}
+
+div.logo{
+	position:relative;
+	float:left;
+	width: 10%;
+	height: 5%;
+	top:10px;
+	left: 10px;
+}
+
+div.headertitle{
+	position:relative;
+	float:left;
+	width: 60%;
+	height: 5%;
+	left:0px;
+	text-align:center;
+}
+
+div.status{
+	position:relative;
+	float:left;
+	width: 29.5%;
+	height: 5%;
+}
+
+.statusmsg{
+	font: 12px;
+	font-family:default sans-serif;
+	font-weight: bold;
+	margin-top: 3px;
+	color:#C11742;
+	margin-bottom: 4px;
+}
+.headercontent{
+	text-align: left;
+	margin-top: 2px;
+	margin-bottom: 4px;
+	color:#0063B8;
+	margin-left:53%;
+}
+
+div.fieldContainer{
+	position:relative;
+	float:left;
+	width: 99.8%;
+	height: 84.6%;
+	border:1px solid black;
+}
+/*-------------------------------------------
+	Style for header text
+-------------------------------------------*/
+.h3{
+	font: 2.5ex;
+	font-family:Default sans-serif,helvitica;
+	font-weight: bold;
+	font-size:25px;
+	margin-left:11%;
+	margin-top: 8px;
+	color:#153E7E;
+	margin-bottom: 4px;
+}	
+
+/*-------------------------------------------
+	Style for button container div
+-------------------------------------------*/
+
+.btncontainer{
+	position:relative;
+	float:left;
+	width: 99.8%;
+	height:6%;
+	margin-top:2%;
+	border: 1px solid black;
+	background-color:#214278;
+	/*background-image: url(bar.jpg);
+	background-repeat: repeat-x;*/
+}
+
+/*-------------------------------------------
+	Style for form div
+-------------------------------------------*/
+
+.form{
+	position:relative;
+	float:left;
+	width:99%;
+	top:2px;
+	margin-left:1.5px;
+	border: 1px solid black;
+	background-color:#F4E9E9;
+	border:1px solid black;
+}
+
+/* Label CSS*/
+.label {
+	background-color:#B9D7F3;
+	border-collapse:collapse;
+	color:#385D8A;
+	left:2px;
+	padding-left:4px;
+	font-family:Default sans-serif;
+	font-size:14.1247px;
+	font-weight:bold;
+	border:1px solid #ffffff;
+}
+
+.tablecellborder{
+	border:1px solid #ffffff;
+	/*border-collapse:collapse;*/
+}
+
+.tablecss{
+	empty-cells:hide;
+	position:relative;
+	width:100%;
+	height:100%;
+	border-spacing:0px;
+	padding-top:3px;
+	padding-bottom:3px;
+	padding-left:3px;
+	padding-right:3px;
+	border:0px;
+	background-color:#ffffff;
+}
+
+.table2css{
+	position:relative;
+	width:80%;
+	height:10%;
+	border-spacing:0px;
+	padding-top:3px;
+	padding-bottom:3px;
+	padding-left:3px;
+	padding-right:3px;
+	border:0px;
+}
+.label2 {
+	/*background-color:#C48189; /*#7F525D; #C48793;#E799A3; #F2DCDB;*/
+	border:1px solid #F4E9E9;
+	color:#000000;
+	left:2px;
+	align:center;
+	padding-left:4px;
+	font-family:Default sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+/* CSS For Text box*/
+.textbox {
+	width:180px;
+	height:22px;
+	float:left;
+	margin-left:10px;
+	margin-top:1px;
+	padding:0px 4px 6px;
+	font-family:Verdana;
+	font-size:12px;
+}
+
+/* Text style for preview */
+.textbox2 {
+	width:100px;
+	height:22px;
+	float:left;
+	margin-left:10px;
+	margin-top:1px;
+	padding:0px 4px 6px;
+	font-family:Verdana;
+	font-size:12px;
+}
+/* CSS For Number Field*/
+.numberField {
+	width:100px;
+	height:23px;
+	float:left;
+	margin-left:10px;
+	margin-top:2px;
+	padding:0px 2px 4px;
+	font-family:Verdana;
+	font-size:12px;
+}
+
+/* Comments Field Style */
+
+.comments {
+	width:260px;
+	height:25px;
+	float:left;
+	margin-left:10px;
+	margin-top:1px;
+	padding:0px 4px 6px;
+	font-family:Verdana;
+	font-size:12px;
+}
+
+/*-------------------------------------------
+	Style for button Submit
+-------------------------------------------*/
+
+.btnsubmit{
+	width:123px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('submit.jpg');
+	background-repeat: no-repeat;
+}
+/*-------------------------------------------
+	Style for button Cancel
+-------------------------------------------*/
+
+.btncancel{
+	width:121px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('cancel.jpg');
+	background-repeat: no-repeat;
+}
+
+/*-------------------------------------------
+	Style for button Approve
+-------------------------------------------*/
+.btnapprove{
+	width:123px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('approve.jpg');
+	background-repeat: no-repeat;
+}
+
+/*-------------------------------------------
+	Style for button Back
+-------------------------------------------*/
+.btnback{
+	width:123px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('Back.jpg');
+	background-repeat: no-repeat;
+}
+/*-------------------------------------------
+	Style for button Reject
+-------------------------------------------*/
+
+.btnreject{
+	width:112px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('reject.jpg');
+	background-repeat: no-repeat;
+}
+
+/*-------------------------------------------
+	Style for button Save
+-------------------------------------------*/
+
+.btnsave{
+	width:112px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('save.jpg');
+	background-repeat: no-repeat;
+}
+
+
+/*-------------------------------------------
+	Style for table containing fields
+-------------------------------------------*/
+
+.borderTable {
+	padding: 1px 1px 1px 1px;
+	width:100%;
+}
+
+/*-------------------------------------------
+	Style for size,font of textbox
+-------------------------------------------*/
+.form{
+  font: 10px;
+  font-family: sans-serif;
+  font-weight: normal;
+  size:25;
+}
+
+.homePage	{
+		background-color:#DCE6F2;
+	}
+	
+.userName{
+	font-family:sans-serif;
+	size:5pt;
+	color:white;
+	font-weight: bold;
+}
+

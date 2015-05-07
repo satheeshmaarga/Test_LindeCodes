@@ -1,0 +1,2131 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library fnMailSend
+	Created Sep 3, 2010 by Vasan Dev1/org
+	@Modified : August-16-2011.
+	@Author   : Krishnamoorthi P
+	Description: Comments for Library
+%END REM
+
+Option Public
+Option Declare
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub Initialize()
+Declare Sub Terminate()
+Declare Function addFilesToRichTextField(contextDoc As NotesDocument,rtFieldName As String, fileNames As Variant) As Boolean
+Declare Function removeattachment(curdoc As NotesDocument)	
+Declare Function WebMoveAttachment1(doc As NotesDocument, ByVal moveToFieldName As String)
+Declare Function htmlContent(doc As NotesDocument,url As String) As String
+Declare Function GetNotesTempDirectory() As String 
+Declare Function sendHTMLContentAsMail(recipients As Variant,ccTo As Variant,bccTo As Variant,Subject As String,displaySent As String,bodyHtmlContent As String,link As String, doc As NotesDocument,dbpath As String,docuid As  String)
+Declare Function AppendHotspotLink (rtitem As NotesRichTextItem, url As String) As String
+Declare Function RejectsendHTMLContentAsMail(recipients As Variant,ccTo As Variant,bccTo As Variant,Subject As String,displaySent As String,bodyHtmlContent As String,link As String, doc As NotesDocument,dbpath As String,docuid As  String)
+Declare Function CopyAttachments(curDatabase As NotesDatabase, docSource As NotesDocument, docTarget As NotesDocument)
+Declare Function XmlConvert (txt As String) As String
+Declare Function ReplaceSubstring(sourcestr As String, fromstr As String, tostr As String) As String
+Declare Function RejectsendMail(curDoc As NotesDocument,sender As Variant,cc As Variant,CurApprover As String )
+Declare Function sendMail(curDoc As NotesDocument,sender As Variant,cc As Variant,CurApprover As String )
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+
+Dim curDatabase As NotesDatabase
+Const FIELD_CURSTAGE="curStage"
+Declare Function w32_OSGetSystemTempDirectory Lib "nnotes" Alias "OSGetSystemTempDirectory" ( ByVal S As String) As Integer 
+Declare Function mac_OSGetSystemTempDirectory Lib "NotesLib" Alias "OSGetSystemTempDirectory" ( ByVal S As String) As Integer 
+Declare Function linux_OSGetSystemTempDirectory Lib "libnotes.so" Alias "OSGetSystemTempDirectory" ( ByVal S As String) As Integer 
+Const ERR_UNSUPPORTED_PLATFORM = 20300 
+
+
+'++LotusScript Development Environment:2:2:Initialize:1:10
+Sub Initialize()
+	
+End Sub
+
+'++LotusScript Development Environment:2:2:Terminate:2:10
+
+Sub Terminate()
+	
+End Sub
+
+'++LotusScript Development Environment:2:1:addFilesToRichTextField:3:8
+
+
+Function addFilesToRichTextField(contextDoc As NotesDocument,rtFieldName As String, fileNames As Variant) As Boolean
+'****************************************************************************************************************************
+	
+'@Created    :    03 Jun'2010
+'@Author    :    Karthikeyan A
+'@Name    :    addFilesToRichTextField
+'@Purpose:    To attach multiple attachments to a particular document in a particular richtext field 'with the information on the source path of the files
+'@Param    :    contextDoc - the document that contains the richtext field
+'@Param    :    rtFieldName - The name of the rich text field that should hold the attachments
+'@Param    :    fileNames - An array of file names that are to be uploaded to the document's rtfield
+'@Return    :    Boolean : true if operation succeeds and false otherwise
+'****************************************************************************************************************************
+	
+    'mark the flow of control getting inside the current function
+	addFilesToRichTextField=False   	
+    'declare all variables and objects necessary for further manipulation
+	Dim rtItem As NotesRichTextItem
+	
+    'handle errors in case of abrupt termination
+	On Error GoTo errHandler
+	
+    'validate parameters
+    'if the context document is nothing then inform the same to the user and exit
+	If contextDoc Is Nothing Then
+		MsgBox "The handle to the context document to which the attachments are to be added is not set in function ""addFilesToRichTextField""",,"Error in ""addFilesToRichTextField"""
+		Exit Function
+	End If
+	
+    'if there are no file names provided then exit function
+	If IsEmpty(fileNames) Then
+        'no problem skip execution
+		Exit Function
+	End If
+	
+    'if the rich text field name is not provided throw an error
+	If Trim(rtFieldName)="" Then
+		Error 1001,"Invalid input param - ""fileNames is Empty"" in function ""addFilesToRichTextField"""
+	End If
+	
+    'set the handle for the rich text item associated with the field name provided
+	Set rtItem=contextDoc.GetFirstItem(CStr(rtFieldName))
+	If rtItem Is Nothing Then
+		Set rtItem=contextDoc.CreateRichTextItem(rtFieldName)
+	End If
+    'loop through all the filenames and embed them into the rich text field
+	'Forall fileName In fileNames
+	'If Trim(Cstr(fileName)) <> "" Then
+	Call rtItem.EmbedObject(EMBED_ATTACHMENT,"",CStr(fileNames))
+	'End If
+'	End Forall
+	
+    'update richtext item
+	Call rtItem.Update()
+	
+    'save the current document so that the changes get updated to the document permanently
+	'Call contextDoc.Save(True,False)
+	
+    'mark the flow of control moving out of the current function
+	addFilesToRichTextField=True
+	Exit Function
+    'inform the user about the error that resulted in abrupt termination
+errHandler:
+	MsgBox "Error: ***" & Error & "*** occured online ***" & CStr(Erl) & "*** with error number ***" & CStr(Err) &"***",,"Error in function""addFilesToRichTextField"""
+	Exit Function   
+End Function
+
+'++LotusScript Development Environment:2:1:removeattachment:1:8
+Function removeattachment(curdoc As NotesDocument)	
+	Dim rtField As String	
+	'handle errors in case of abrupt termination
+	On Error GoTo errHandler	
+	rtField="rtpwf"
+	curDoc.RemoveItem("rtpwf")
+	Call curDoc.Save(True,True)
+	Exit Function
+errHandler:
+	MsgBox "Cannot Remove attachment"
+End Function
+
+'++LotusScript Development Environment:2:1:WebMoveAttachment1:1:8
+Function WebMoveAttachment1(doc As NotesDocument, ByVal moveToFieldName As String)
+   ' This function moves a file attached via the Web with the File Upload Control to a rich text field.
+   Dim s As New NotesSession
+   Dim tempDir As String
+   Dim v2FileNames As Variant
+   Dim i As Integer
+   Dim attachedFile As NotesEmbeddedObject
+   Dim filePath As String
+   Dim rtItem As NotesRichTextItem
+   
+   tempDir = s.getEnvironmentString("Directory", True)
+   ' Put a trailing slash at the end of the directory if it is needed
+   If InStr(tempDir, "/") <> 0 And Right(tempDir, 1) <> "/" Then tempDir = tempDir & "/"
+   If InStr(tempDir, "\") <> 0 And Right(tempDir, 1) <> "\" Then tempDir = tempDir & "\"
+   ' Get the names of all the attachments (1 or more)
+   v2FileNames = Evaluate("@AttachmentNames", doc)
+   For i = LBound(v2FileNames) To UBound(v2FileNames)
+	   Print "<p>" v2FileNames(i)"<p>"
+      If v2FileNames(i) <> "" Then   ' Make sure it's a valid file name
+         Set attachedFile = doc.getAttachment(v2FileNames(i))
+         filePath = tempDir & v2FileNames(i)
+         ' Save the file on the server
+         Call attachedFile.extractFile(filePath)
+         ' Create the rich text item and re-attach the file
+         If doc.hasItem(moveToFieldName) Then
+            Set rtItem = doc.getFirstItem(moveToFieldName)
+            ' Add a couple of lines to the rich text field before re-attaching the file
+            Call rtItem.addNewLine(2)
+         Else
+            Set rtItem = New NotesRichTextItem(doc, moveToFieldName)
+         End If
+         Call rtItem.embedObject(1454, "", filePath)
+	     'Call attachedFile.Remove()      
+	    
+         ' Delete the file(s) from the server file system
+         Kill filePath
+      End If
+   Next   ' Move on to the next file name
+End Function
+
+'++LotusScript Development Environment:2:1:htmlContent:8:8
+
+
+
+%REM
+	Function htmlContent
+	Description: Comments for Function
+%END REM
+Function htmlContent(doc As NotesDocument,url As String) As String
+	On Error GoTo errHnd
+	Dim htmlStr As String
+	Dim cnstVal(0 To 7), docVal(0 To 7) As Variant
+	Dim disCnstVal(0 To 8), disVal(0 To 8), disPercentage(0 To 8) As Variant
+	Dim i As Integer
+	
+	'htmlStr="<body>"
+	'htmlStr=htmlStr+Chr(13)+"<table border='2'>"+Chr(13)
+	
+			
+		htmlStr="<table border='2'>"+Chr(13)
+	'initializing table left side constant
+		cnstVal(0)="Proposal Number"
+		cnstVal(1)="Order Type"
+		cnstVal(2)="ASM"
+		cnstVal(3)="Project Name"
+		cnstVal(4)="Address"
+		cnstVal(5)="TIN Number"
+		cnstVal(6)="Customer Name"
+		cnstVal(7)="Builder Name"
+		
+	'fetching the right side value from the document
+		docVal(0)=doc.txtproposalno(0)
+		docVal(1)=doc.cOrderType(0)
+		docVal(2)=doc.cAsm(0)
+		docVal(3)=doc.txtProjectNm(0)
+		docVal(4)=doc.txtAddressLine1(0)
+		docVal(5)=doc.txtTinNum(0)
+		docVal(6)=doc.txtCustomerNm(0)
+		docVal(7)=doc.txtAddressLine2(0)
+		
+		
+		For i=0 To UBound(cnstVal)
+		htmlStr=htmlStr+"<tr>"
+		htmlStr=htmlStr+"<td>"+cnstVal(i)+"</td>"
+		htmlStr=htmlStr+"<td>"+docVal(i)+"</td>"
+		htmlStr=htmlStr+"</tr>"
+	Next
+	
+		htmlStr=htmlStr+Chr(13)+"</table>"+Chr(13)+"<br><br>"+Chr(13)+"<table border='2'>"
+		
+		'initializing table left side constant
+		disCnstVal(0)="Category"
+		disCnstVal(1)="PW Sanware"
+		disCnstVal(2)="JP Sanware"
+		disCnstVal(3)="Allied products"
+		disCnstVal(4)="TAPS"
+		disCnstVal(5)="Crestia/Glomour Range"
+		disCnstVal(6)="Roca Sanware & Tiles"
+		disCnstVal(7)="Roca Taps"
+		disCnstVal(8)="Totals"
+		
+	'fetching the right side value from the document
+		disVal(0)="Value"
+		disVal(1)=doc.nmpws(0)
+		disVal(2)=doc.nmjps(0)
+		disVal(3)=doc.nmaps(0)
+		disVal(4)=doc.nmtaps(0)
+		disVal(5)=doc.nmcgr(0)
+		disVal(6)=doc.nmrst(0)
+		disVal(7)=doc.nmrts(0)
+		disVal(8)=doc.nmtotals(0)
+		
+		'fetching the discount from the document
+		disPercentage(0)="Discount"
+		disPercentage(1)=doc.nmdpws(0)
+		disPercentage(2)=doc.nmdjps(0)
+		disPercentage(3)=doc.nmdaps(0)
+		disPercentage(4)=doc.nmdtaps(0)
+		disPercentage(5)=doc.nmdcgr(0)
+		disPercentage(6)=doc.nmdrst(0)
+		disPercentage(7)=doc.nmdrts(0)
+		disPercentage(8)=""
+		
+		For i=0 To UBound(disCnstVal)
+		htmlStr=htmlStr+"<tr>"
+		htmlStr=htmlStr+"<td>"+disCnstVal(i)+"</td>"
+		htmlStr=htmlStr+"<td>"+disVal(i)+"</td>"
+		htmlStr=htmlStr+"<td>"+disPercentage(i)+"</td>"
+		htmlStr=htmlStr+"</tr>"
+		Next
+		htmlStr=htmlStr+Chr(13)+"</table>"+Chr(13)+"<br><br>"
+		
+		
+		htmlStr=htmlStr+Chr(13)+"<br><br>"
+		
+		htmlStr=htmlStr+Chr(13)+url
+		
+		
+		htmlContent=htmlStr
+		Exit Function				
+errHnd:
+				Print "Error at line no. "&CStr(Erl) &" Error is " & Error()
+				Exit Function
+End Function
+
+'++LotusScript Development Environment:2:1:GetNotesTempDirectory:1:8
+Function GetNotesTempDirectory() As String 
+' Returns the path of the temporary directory used by Notes. 
+	Dim session As New NotesSession 
+	Dim d As String * 256 
+	Dim s% 
+	Select Case session.Platform 
+	Case "Linux" 
+		s% = linux_OSGetSystemTempDirectory(d) 
+	Case "Macintosh" 
+		s% = mac_OSGetSystemTempDirectory(d) 
+	Case "Windows/32" 
+		s% = w32_OSGetSystemTempDirectory(d) 
+	Case Else 
+		Error ERR_UNSUPPORTED_PLATFORM, "In GetNotesTempDirectory, platform not supported: " & session.Platform 
+	End Select 
+	GetNotesTempDirectory = Left$(d, s%) 
+End Function
+
+'++LotusScript Development Environment:2:1:sendHTMLContentAsMail:1:8
+Function sendHTMLContentAsMail(recipients As Variant,ccTo As Variant,bccTo As Variant,Subject As String,displaySent As String,bodyHtmlContent As String,link As String, doc As NotesDocument,dbpath As String,docuid As  String)
+	
+	'Declare Variables 	
+	On Error GoTo errHnd
+	Dim s As New NotesSession
+	Dim db As NotesDatabase
+	Dim stream As NotesStream
+	Dim host As String
+	Dim message As  NotesDocument
+	Set db = s.CurrentDatabase
+	Set message=db.CreateDocument
+	'Capture the server name and filepath for use in URLs
+	Dim ServerName As New NotesName( db.Server )
+	host = "http://" + ServerName.Common & ".com"
+	s.ConvertMIME = False ' Do not convert MIME to rich text
+	Set stream = s.CreateStream
+	message.Subject =Subject
+	message.SendTo =recipients
+	message.CopyTo =ccTo
+	message.BlindCopyTo =bccTo
+	message.RecNoOutOfOffice = "1"
+	message.displaySent=displaySent 
+	message.principal=displaySent
+	Call message.Replaceitemvalue("From",displaySent)
+	Dim rtitem As Variant
+	Dim rtitemMKTG As Variant
+	Dim view As NotesView
+	Dim viewMKTG As NotesView
+	Dim viewDoc As NotesDocument
+	Dim viewDocMKTG As NotesDocument
+	Dim stusMessage As String
+	Dim MKTGPercentage As String
+	Dim MKTGRemarks As String
+	Dim NSMRemarks As String
+	Dim VPRemarks As String
+	Dim MDRemarks As String	
+	Dim rtnav11 As NotesRichTextNavigator
+	Dim flag As String 
+	
+	Set view = db.GetView("vwByAttachment")
+	Set viewDoc = view.getlastdocument
+	Set rtitem=Doc.getfirstitem("rtpwf")
+	Dim docStatus As String
+
+	Dim docVal(0 To 7) As Variant, disVal(0 To 8) As Variant,disPercentage(0 To 8) As Variant
+	If Doc.curStage(0)="2" Or Doc.curStage(0)="2.2" Or Doc.curStage(0)="3.1" Or Doc.curStage(0)="4.1" Or doc.curStage(0)="2.1" Or doc.curStage(0)="3" Or Doc.curStage(0)="7" Or Doc.curStage(0)="8" Then
+					 Call CopyAttachments(curDatabase,doc,message)
+	End If
+	docVal(0)=doc.txtproposalno(0)
+	docVal(1)=doc.cOrderType(0)
+	docVal(2)=doc.cAsm(0)
+	docVal(3)=doc.txtProjectNm(0)
+	docVal(4)=doc.txtAddressLine1(0)
+	docVal(5)=doc.txtTinNum(0)
+	docVal(6)=doc.txtCustomerNm(0)
+	docVal(7)=doc.txtAddressLine2(0)
+	docStatus=doc.curStage(0)
+	stusMessage=doc.strStatusMsg(0)
+	MKTGPercentage=doc.marginPer(0)
+	MKTgRemarks=doc.txtMKTGRemarks(0)
+	NSMRemarks=doc.txtRemarksReworks(0)
+	VPRemarks=doc.txtVPRemarks(0)
+	MDRemarks=doc.txtMDRemarks(0) 
+	'fetching the right side value from the document
+	disVal(0)="Value"
+	disVal(1)=doc.nmpws(0)
+	disVal(2)=doc.nmjps(0)
+	disVal(3)=doc.nmaps(0)
+	disVal(4)=doc.nmtaps(0)
+	disVal(5)=doc.nmcgr(0)
+	disVal(6)=doc.nmrst(0)
+	disVal(7)=doc.nmrts(0)
+	disVal(8)=doc.nmtotals(0)
+	
+	'fetching the discount from the document
+	disPercentage(0)="Discount"
+	disPercentage(1)=doc.nmdpws(0)
+	disPercentage(2)=doc.nmdjps(0)
+	disPercentage(3)=doc.nmdaps(0)
+	disPercentage(4)=doc.nmdtaps(0)
+	disPercentage(5)=doc.nmdcgr(0)
+	disPercentage(6)=doc.nmdrst(0)
+	disPercentage(7)=doc.nmdrts(0)
+	disPercentage(8)=""
+	
+	Dim richStyle As NotesRichTextStyle
+	Set richStyle = s.Createrichtextstyle()
+	Dim i As Integer
+	Dim styles(1 To 2) As NotesRichTextParagraphStyle
+	For i= 1 To 2
+		Set styles(i) = s.CreateRichTextParagraphStyle
+		styles(i).LeftMargin =1
+		styles(i).FirstLineLeftMargin = 1
+		styles(i).RightMargin = RULER_ONE_INCH * 1.5		
+	Next
+	
+	Dim body As New NotesRichTextItem(message,"Body")	
+	Dim margindd As NotesDocument
+	Set margindd=db.Createdocument()		
+	Dim margintab2 As  New NotesRichTextItem(margindd, "Body")
+	Dim maringrtnav2 As NotesRichTextNavigator
+	flag=InStr(Right(link,12),"open")
+	If docStatus="7" Then
+		richStyle.Bold = True
+		Call body.Appendtext("Approved")
+	End If
+	If docStatus="4" Then	
+		
+		If NSMRemarks="" Then
+			Call margintab2.AppendTable(2,2,,RULER_ONE_INCH * 1.5,styles)	
+			Set maringrtnav2 = margintab2.CreateNavigator
+			Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = True
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText("Margin Percentage")
+			Call margintab2.EndInsert
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = False
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText(MKTGPercentage)
+			Call margintab2.EndInsert
+			
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = True
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText("MKTG Remarks")
+			Call margintab2.EndInsert
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = False
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText(MKTGRemarks)
+			Call margintab2.EndInsert
+		Else
+			Call margintab2.AppendTable(3,2,,RULER_ONE_INCH * 1.5,styles)	
+			Set maringrtnav2 = margintab2.CreateNavigator
+			Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = True
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText("Margin Percentage")
+			Call margintab2.EndInsert
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = False
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText(MKTGPercentage)
+			Call margintab2.EndInsert
+			
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = True
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText("MKTG Remarks")
+			Call margintab2.EndInsert
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = False
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText(MKTGRemarks)
+			Call margintab2.EndInsert
+			
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = True
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText("NSM Remarks")
+			Call margintab2.EndInsert
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = False
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText(NSMRemarks)
+			Call margintab2.EndInsert
+		End If
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)
+	
+		
+	ElseIf docStatus="5.1" Or stusMessage="Awaiting Upload-MKTG After NSM-Rework" Then		
+			
+		Call margintab2.AppendTable(3,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("MKTG Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert
+		
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)
+	
+		
+	
+	ElseIf docStatus="6.1" Or stusMessage="Awaiting NSM approval After VP-Rework" Then	
+		
+		Call margintab2.AppendTable(4,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("MKTG Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("VP Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(VPRemarks)
+		Call margintab2.EndInsert
+		
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)
+		
+	
+	ElseIf docStatus="7.1" Or stusMessage="Awaiting Upload-MKTG After NSM-Rework" Then			
+		Call margintab2.AppendTable(5,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("MKTG Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("VP Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(VPRemarks)
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("MD Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MDRemarks)
+		Call margintab2.EndInsert
+		
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)
+		
+
+	
+	ElseIf docStatus="5" And flag="1" Then
+		body.addTab(1)
+		Call margintab2.AppendTable(4,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("MKTG Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert
+		
+		If Not VPRemarks="" Then
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = True
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText("VP Remarks")
+			Call margintab2.EndInsert
+			Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+			Call margintab2.BeginInsert(maringrtnav2)
+			richStyle.Bold = False
+			Call margintab2.AppendStyle(richStyle)
+			Call margintab2.AppendText(VPRemarks)
+			Call margintab2.EndInsert
+		End If
+				
+		
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)	
+	
+	
+	ElseIf docStatus="5" And flag="0" Then
+		body.addTab(1)
+		Call margintab2.AppendTable(2,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert		
+		
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)	
+	
+	
+	
+	ElseIf docStatus="6" Then
+		body.addTab(1)
+		Call margintab2.AppendTable(3,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("VP Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(VPRemarks)
+		Call margintab2.EndInsert		
+			
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)
+		
+	End If
+	
+	flag=InStr(Right(link,12),"open")
+	If docStatus="7" And flag=1 And doc.submitstage(0)="NSMSubmit" And doc.submitstage(0)="VPSubmit" And doc.submitstage(0)="MDSubmit" Then
+		body.addTab(1)
+		Call margintab2.AppendTable(4,2,,RULER_ONE_INCH * 1.5,styles)	
+		Set maringrtnav2 = margintab2.CreateNavigator
+		Call maringrtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("Margin Percentage")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MKTGPercentage)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("NSM Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(NSMRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("VP Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(VPRemarks)
+		Call margintab2.EndInsert
+		
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)	
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = True
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText("MD Remarks")
+		Call margintab2.EndInsert
+		Call maringrtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+		Call margintab2.BeginInsert(maringrtnav2)
+		richStyle.Bold = False
+		Call margintab2.AppendStyle(richStyle)
+		Call margintab2.AppendText(MDRemarks)
+		Call margintab2.EndInsert
+		
+		Call body.AppendRTItem(margintab2)
+		Call body.Endinsert()	
+		body.Addnewline(2)
+		
+	End If		
+		
+	Dim prodd As NotesDocument
+	Set prodd=db.Createdocument()	
+	Dim protab As  New NotesRichTextItem(prodd, "protab ")	
+	Dim rtnav1 As NotesRichTextNavigator
+	Call protab .AppendTable(8,2,,RULER_ONE_INCH * 1.5,styles)	
+	Set rtnav1 = protab .CreateNavigator		
+	richStyle.Bold = True	
+	Call rtnav1.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Proposal Number")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(0))
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Order Type")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(1))
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("ASM")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(2))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Project Name")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(3))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Address")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(4))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("TIN Number")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(5))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Customer Name")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(6))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Builder Name")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(7))
+	Call protab .EndInsert	
+	
+	Call body.Appendrtitem(protab)
+	
+	Dim j As Integer
+	Dim styles1(1 To 3) As NotesRichTextParagraphStyle
+	
+	Set styles1(1) = s.CreateRichTextParagraphStyle
+	styles1(1).LeftMargin =1
+	styles1(1).FirstLineLeftMargin = 1
+	styles1(1).RightMargin = RULER_ONE_INCH * 2
+	Set styles1(2) = s.CreateRichTextParagraphStyle
+	styles1(2).LeftMargin =1
+	styles1(2).FirstLineLeftMargin = 1
+	styles1(2).RightMargin = RULER_ONE_INCH 
+	Set styles1(3) = s.CreateRichTextParagraphStyle
+	styles1(3).LeftMargin =1
+	styles1(3).FirstLineLeftMargin = 1
+	styles1(3).RightMargin = RULER_ONE_INCH 
+	Dim dd As NotesDocument
+	Set dd=db.Createdocument()
+	
+	Dim tab2 As  New NotesRichTextItem(dd, "Body")
+	Dim rtnav2 As NotesRichTextNavigator
+
+	Call tab2.AppendTable(9,3,,RULER_ONE_INCH * 1.5,styles1)	
+	Set rtnav2 = tab2.CreateNavigator
+	
+	Call rtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Category")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Value")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Discount")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("PW Sanware")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(1))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(1))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("JP Sanware")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(2))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(2))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Allied Products")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(3))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(3))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("TAPS")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(4))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(4))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Crestia/Glomour Range")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(5))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(5))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Roca Sanware & Tiles")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(6))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(6))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Roca Taps")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(7))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(7))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Total")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(8))
+	Call tab2.EndInsert	
+	
+	Call body.AppendRTItem(tab2)
+		
+	Call body.Addpagebreak()
+	
+	Call body.Addnewline(2)
+	Call body.addtab(1)
+	Call body.Appendtext("Click The Below Link To Open The Document")	
+	Call body.Addnewline(2)
+	Call body.addtab(1)
+	Call body.Appendtext(link)	
+		
+	Dim attachment As String
+	Dim attachedFile As NotesEmbeddedObject
+	Dim rtnav As NotesRichTextNavigator
+	Dim att As NotesEmbeddedObject
+	Dim filePath As String
+	
+	If doc.submitstage(0)="SEResubmit" Or doc.submitstage(0)="ASMRework" Or doc.submitstage(0)="RSMRework" Or doc.submitstage(0)="MKTGRework"Or doc.submitstage(0)="SESubmit" Or doc.submitstage(0)="ASMSubmit" Or doc.submitstage(0)="MKTGRework" or doc.submitstage(0)="RSMSubmit"Then
+		If Not (rtitem Is Nothing) Then
+			'Set rtnav = rtitem.CreateNavigator
+			REM Get attachments	
+			
+			If Not(rtnav Is Nothing) Then		
+				If rtnav.FindFirstElement(RTELEM_TYPE_FILEATTACHMENT) Then
+					Do
+						Set att = rtnav.GetElement()					
+						filepath$ =  att.Source		
+						filepath$=ReplaceSubstring(filepath$," ","%20")
+						attachment=dbpath+Docuid+"/$File/"+filePath
+						Call body.Addnewline(2)	
+						Call body.addtab(1)	
+						'body.appendtext(attachment)	
+						
+					Loop While rtnav.FindNextElement()
+					
+				End If
+			End If	
+		End If
+		Call body.Addnewline(2)	
+		Call body.addtab(1)			
+		Call body.AppendRTItem(rtitem)
+	Else
+		Dim dcMKTG As NotesDocumentCollection
+		Dim vwMKTG As NotesView
+		Dim docMKTG As NotesDocument
+		Set vwMKTG=curDatabase.Getview("vwMKTGFiles")
+		Call vwMKTG.Refresh()
+		Set dcMKTG=vwMKTG.Getalldocumentsbykey(doc.txtproposalno(0),True)
+		Set docMKTG=dcMKTG.Getfirstdocument()		
+		
+		While Not (docMKTG Is Nothing)
+			Set rtitemMKTG=docMKTG.getfirstitem("aFile")				
+			Set rtnav = rtitemMKTG.CreateNavigator
+			REM Get attachments
+
+			If rtnav.FindFirstElement(RTELEM_TYPE_FILEATTACHMENT) Then
+				Do
+					Set att = rtnav.GetElement()
+
+					filepath$ =  att.Source	
+					filepath$=ReplaceSubstring(filepath$," ","%20")					
+					
+					attachment=dbpath+docMKTG.Universalid+"/$File/"+filePath
+					Call body.Addnewline(2)
+					Call body.addtab(1)
+					'	body.appendtext(attachment)			
+
+				Loop While rtnav.FindNextElement()				
+			End If
+			Call body.Addnewline(2)
+			Call body.addtab(1)
+			Call body.AppendRTItem(rtitemMKTG)
+			
+			Set docMKTG=dcMKTG.GetNextDocument (docMKTG)
+		Wend
+	End If 
+	
+	
+	%REM
+	If docStatus="7" And doc.Prestatus(0)="rsmapproved" And doc.Prestatus(0)="asmapproved"Then
+		If Not (rtitem Is Nothing) Then
+			'Set rtnav = rtitem.CreateNavigator
+			REM Get attachments	
+			
+			If Not(rtnav Is Nothing) Then		
+				If rtnav.FindFirstElement(RTELEM_TYPE_FILEATTACHMENT) Then
+					Do
+						Set att = rtnav.GetElement()					
+						filepath$ =  att.Source		
+						filepath$=ReplaceSubstring(filepath$," ","%20")
+						attachment=dbpath+Docuid+"/$File/"+filePath
+						Call body.Addnewline(2)	
+						Call body.addtab(1)	
+						'body.appendtext(attachment)	
+						
+					Loop While rtnav.FindNextElement()
+					
+				End If
+			End If	
+		End If
+		Call body.Addnewline(2)	
+		Call body.addtab(1)			
+		Call body.AppendRTItem(rtitem)	
+	ELSEIf docStatus="4" Or docStatus="7" or docStatus="7.1" Or stusMessage="Awaiting NSM Approval After MD-Rework" Or docStatus="6.1" Or stusMessage="Awaiting NSM approval After VP-Rework" Or stusMessage="Awaiting Upload-MKTG After NSM-Rework" Or  docStatus="4.1" Or docStatus="5" Or docStatus="6" Or flag=1  Then 
+		Dim dcMKTG As NotesDocumentCollection
+		Dim vwMKTG As NotesView
+		Dim docMKTG As NotesDocument
+		Set vwMKTG=curDatabase.Getview("vwMKTGFiles")
+		Call vwMKTG.Refresh()
+		Set dcMKTG=vwMKTG.Getalldocumentsbykey(doc.txtproposalno(0),True)
+		Set docMKTG=dcMKTG.Getfirstdocument()		
+	
+		While Not (docMKTG Is Nothing)
+			Set rtitemMKTG=docMKTG.getfirstitem("aFile")				
+			Set rtnav = rtitemMKTG.CreateNavigator
+			REM Get attachments
+
+			If rtnav.FindFirstElement(RTELEM_TYPE_FILEATTACHMENT) Then
+				Do
+					Set att = rtnav.GetElement()
+
+					filepath$ =  att.Source	
+					filepath$=ReplaceSubstring(filepath$," ","%20")					
+					
+					attachment=dbpath+docMKTG.Universalid+"/$File/"+filePath
+					Call body.Addnewline(2)
+					Call body.addtab(1)
+				'	body.appendtext(attachment)			
+
+				Loop While rtnav.FindNextElement()				
+			End If
+			Call body.Addnewline(2)
+			Call body.addtab(1)
+			Call body.AppendRTItem(rtitemMKTG)
+				
+			Set docMKTG=dcMKTG.GetNextDocument (docMKTG)
+		Wend
+	
+	Else
+		If Not (rtitem Is Nothing) Then
+			'Set rtnav = rtitem.CreateNavigator
+			REM Get attachments	
+			
+			If Not(rtnav Is Nothing) Then		
+				If rtnav.FindFirstElement(RTELEM_TYPE_FILEATTACHMENT) Then
+					Do
+						Set att = rtnav.GetElement()					
+						filepath$ =  att.Source		
+						filepath$=ReplaceSubstring(filepath$," ","%20")
+						attachment=dbpath+Docuid+"/$File/"+filePath
+						Call body.Addnewline(2)	
+						Call body.addtab(1)	
+						'body.appendtext(attachment)	
+						
+					Loop While rtnav.FindNextElement()
+					
+				End If
+			End If	
+		End If
+		Call body.Addnewline(2)	
+		Call body.addtab(1)			
+		Call body.AppendRTItem(rtitem)		
+	End If
+	%END REM
+
+	Set rtitem=viewDoc.getfirstitem("rtcuspo")
+	Call body.Addnewline(1)
+	Call body.addtab(1)	
+	Call body.AppendRTItem(rtitem)
+
+	Call message.save(True,False)	
+	Call message.Send (False)	
+	Exit Function
+errHnd:
+	If Err=13 Then
+		Resume Next		
+	ElseIf Erl=761 Then
+		Call message.save(True,False) 
+		Call message.Send (False)
+		
+		Exit Function
+	Else
+		MsgBox "Error at line no function. " &CStr(Erl) & "Error is "&Error()
+		Exit Function
+	End If
+	
+End Function
+
+
+
+	
+
+'++LotusScript Development Environment:2:1:AppendHotspotLink:5:8
+
+
+
+
+Function AppendHotspotLink (rtitem As NotesRichTextItem, url As String) As String
+  '** This function will attempt to append a button to a given
+  '** NotesRichTextItem, using code that has been assigned
+  '** to this object after it has been created (using the SetCode
+  '** method). The code language (as set with the SetLanguageType
+  '** method) can be either LotusScript or Formula language.
+ 
+  '** If there is an error creating the button (often because the code
+  '** doesn't compile correctly), this function will return the error
+  '** message. If the button is created properly, an empty string
+  '** will be returned.
+ On Error GoTo processError
+ 
+  '** if no rich text item was given to us, just exit without doing anything
+ If (rtitem Is Nothing) Then
+  Exit Function
+ End If
+ 
+ Dim session As New NotesSession
+ Dim db As NotesDatabase
+ Dim doc As NotesDocument
+ Dim body As NotesRichTextItem
+ Dim importer As NotesDXLImporter
+ 
+ Dim buttonCode As String
+ Dim buttonTag As String
+ Dim dxl As String
+ 
+  '** set up the DXL to be used for the code in the button
+%REM
+ If (buttonLanguage = RTB_LOTUSSCRIPT) Then
+  buttonCode = |<lotusscript>Sub Click(Source As Button)
+| & XmlConvert(code) & |
+End Sub</lotusscript>|
+ Else
+  buttonCode = |<formula>| & XmlConvert(code) & |</formula>|
+ End If
+
+
+ 
+ buttonTag = |<button width='2in' widthtype='fitcontent' wraptext='true' |
+ If (edgeType = RTB_SQUARE) Then
+  buttonTag = buttonTag & | edge='square' |
+ Else
+  buttonTag = buttonTag & | edge='rounded' |
+ End If
+ buttonTag = buttonTag & | bgcolor='system'>|
+%END REM
+ 
+  '** DXL that will create a temporary doc with the button we want.
+  '** We're adding the current user name in an Author field on
+  '** this temporary document because we'll be deleting it at the end
+  '** of this function, and the user may only have Author access to
+  '** this database.
+ dxl = |<?xml version='1.0' encoding='ISO-8859-1'?>
+  <!DOCTYPE document SYSTEM 'xmlschemas/domino_8_5.dtd'>
+<document xmlns='http://www.lotus.com/dxl' version='8.5.1'
+ replicaid='0123456789ABCDEF' form='ButtonMaker'>
+<item name='DocAuthor' authors='true' names='true'>
+<text>| & XmlConvert(session.CommonUserName) & |</text></item>
+  <item name='Body'><richtext>
+<pardef id="1" />
+ <par def="1">
+ <actionhotspot>
+<code event="click">
+  <formula>@URLOpen("|& url &|")</formula>
+  </code>
+ Click Here
+  </actionhotspot>
+  </par>
+</richtext>
+  </item>
+</document>|
+ 
+ 
+  '** create a new doc using the DXL above
+ Set db = session.CurrentDatabase
+ Set importer = session.CreateDXLImporter(dxl, db)
+ importer.ReplicaRequiredForReplaceOrUpdate = False
+ importer.DocumentImportOption = DXLIMPORTOPTION_CREATE
+ Call importer.Process
+ 
+  '** get the button from the doc we just created and append it to
+  '** the rich text item we were given
+ Set doc = db.GetDocumentByID(importer.GetFirstImportedNoteId)
+ Set body = doc.GetFirstItem("Body")
+ Call rtitem.AppendRTItem(body)
+ 
+  '** try to delete the temporary doc. In case we can't delete it for some
+  '** reason, a scheduled agent should be written to globally delete
+  '** docs that use the form name specified in the DXL above.
+ On Error Resume Next
+ Call doc.RemovePermanently(True)
+ 
+ Exit Function
+ 
+ 
+processError:
+ If (importer.Log <> "") Then
+  AppendHotspotLink = importer.Log
+ Else
+  AppendHotspotLink = "Error " & Err & " on line " & Erl & ": " & Error$
+ End If
+ Exit Function
+End Function
+
+'++LotusScript Development Environment:2:1:RejectsendHTMLContentAsMail:1:8
+Function RejectsendHTMLContentAsMail(recipients As Variant,ccTo As Variant,bccTo As Variant,Subject As String,displaySent As String,bodyHtmlContent As String,link As String, doc As NotesDocument,dbpath As String,docuid As  String)
+	'Declare Variables 	
+	On Error GoTo errHnd
+	Dim s As New NotesSession
+	Dim db As NotesDatabase
+	Dim stream As NotesStream
+	Dim host As String
+	Dim message As  NotesDocument
+	Set db = s.CurrentDatabase
+	Set message=db.CreateDocument
+	'Capture the server name and filepath for use in URLs
+	Dim ServerName As New NotesName( db.Server )
+	host = "http://" + ServerName.Common & ".com"
+	s.ConvertMIME = False ' Do not convert MIME to rich text
+	Set stream = s.CreateStream
+	message.Subject =Subject
+	message.SendTo =recipients
+	message.CopyTo =ccTo
+	message.BlindCopyTo =bccTo
+	message.RecNoOutOfOffice = "1"
+	message.displaySent=displaySent 
+	message.principal=displaySent
+	Call message.Replaceitemvalue("From",displaySent)
+	Dim rtitem As Variant
+	Dim rtitemMKTG As Variant
+	Dim view As NotesView
+	Dim viewMKTG As NotesView
+	Dim viewDoc As NotesDocument
+	Dim viewDocMKTG As NotesDocument
+	Dim stusMessage As String
+	Dim MKTGPercentage As String
+	Dim MKTGRemarks As String
+	Dim NSMRemarks As String
+	Dim VPRemarks As String
+	Dim MDRemarks As String	
+	Dim rtnav11 As NotesRichTextNavigator
+	Dim flag As String 	
+	
+	Dim docStatus As String
+
+	Dim docVal(0 To 7) As Variant, disVal(0 To 8) As Variant,disPercentage(0 To 8) As Variant
+	If Doc.curStage(0)="2" Or doc.curStage(0)="2.1" Or doc.curStage(0)="3" Or Doc.curStage(0)="7" Or Doc.curStage(0)="8" Then			 
+		'Call CopyAttachments(curDatabase,doc,message)
+	End If
+	docVal(0)=doc.txtproposalno(0)
+	docVal(1)=doc.cOrderType(0)
+	docVal(2)=doc.cAsm(0)
+	docVal(3)=doc.txtProjectNm(0)
+	docVal(4)=doc.txtAddressLine1(0)
+	docVal(5)=doc.txtTinNum(0)
+	docVal(6)=doc.txtCustomerNm(0)
+	docVal(7)=doc.txtAddressLine2(0)
+	docStatus=doc.curStage(0)
+	stusMessage=doc.strStatusMsg(0)
+	MKTGPercentage=doc.marginPer(0)
+	MKTgRemarks=doc.txtMKTGRemarks(0)
+	NSMRemarks=doc.txtRemarksReworks(0)
+	VPRemarks=doc.txtVPRemarks(0)
+	MDRemarks=doc.txtMDRemarks(0) 
+	'fetching the right side value from the document
+	disVal(0)="Value"
+	disVal(1)=doc.nmpws(0)
+	disVal(2)=doc.nmjps(0)
+	disVal(3)=doc.nmaps(0)
+	disVal(4)=doc.nmtaps(0)
+	disVal(5)=doc.nmcgr(0)
+	disVal(6)=doc.nmrst(0)
+	disVal(7)=doc.nmrts(0)
+	disVal(8)=doc.nmtotals(0)
+	
+	'fetching the discount from the document
+	disPercentage(0)="Discount"
+	disPercentage(1)=doc.nmdpws(0)
+	disPercentage(2)=doc.nmdjps(0)
+	disPercentage(3)=doc.nmdaps(0)
+	disPercentage(4)=doc.nmdtaps(0)
+	disPercentage(5)=doc.nmdcgr(0)
+	disPercentage(6)=doc.nmdrst(0)
+	disPercentage(7)=doc.nmdrts(0)
+	disPercentage(8)=""
+	
+	Dim richStyle As NotesRichTextStyle
+	Set richStyle = s.Createrichtextstyle()
+	Dim i As Integer
+	Dim styles(1 To 2) As NotesRichTextParagraphStyle
+	For i= 1 To 2
+		Set styles(i) = s.CreateRichTextParagraphStyle
+		styles(i).LeftMargin =1
+		styles(i).FirstLineLeftMargin = 1
+		styles(i).RightMargin = RULER_ONE_INCH * 1.5		
+	Next
+	
+	Dim body As New NotesRichTextItem(message,"Body")	
+	
+		richStyle.Bold = True
+		Call body.Appendtext("Rejected")
+	
+	Dim prodd As NotesDocument
+	Set prodd=db.Createdocument()	
+	Dim protab As  New NotesRichTextItem(prodd, "protab ")	
+	Dim rtnav1 As NotesRichTextNavigator
+	Call protab .AppendTable(8,2,,RULER_ONE_INCH * 1.5,styles)	
+	Set rtnav1 = protab .CreateNavigator		
+	richStyle.Bold = True	
+	Call rtnav1.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Proposal Number")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(0))
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Order Type")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(1))
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("ASM")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(2))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Project Name")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(3))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Address")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(4))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("TIN Number")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(5))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Customer Name")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(6))
+	Call protab .EndInsert	
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = True
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText("Builder Name")
+	Call protab .EndInsert
+	Call rtnav1.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call protab .BeginInsert(rtnav1)
+	richStyle.Bold = False
+	Call protab .AppendStyle(richStyle)
+	Call protab .AppendText(docVal(7))
+	Call protab .EndInsert	
+	
+	Call body.Appendrtitem(protab)
+	
+	Dim j As Integer
+	Dim styles1(1 To 3) As NotesRichTextParagraphStyle
+	
+	Set styles1(1) = s.CreateRichTextParagraphStyle
+	styles1(1).LeftMargin =1
+	styles1(1).FirstLineLeftMargin = 1
+	styles1(1).RightMargin = RULER_ONE_INCH * 2
+	Set styles1(2) = s.CreateRichTextParagraphStyle
+	styles1(2).LeftMargin =1
+	styles1(2).FirstLineLeftMargin = 1
+	styles1(2).RightMargin = RULER_ONE_INCH 
+	Set styles1(3) = s.CreateRichTextParagraphStyle
+	styles1(3).LeftMargin =1
+	styles1(3).FirstLineLeftMargin = 1
+	styles1(3).RightMargin = RULER_ONE_INCH 
+	Dim dd As NotesDocument
+	Set dd=db.Createdocument()
+	
+	Dim tab2 As  New NotesRichTextItem(dd, "Body")
+	Dim rtnav2 As NotesRichTextNavigator
+
+	Call tab2.AppendTable(9,3,,RULER_ONE_INCH * 1.5,styles1)	
+	Set rtnav2 = tab2.CreateNavigator
+	
+	Call rtnav2.FindFirstElement(RTELEM_TYPE_TABLECELL)	
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Category")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Value")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Discount")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("PW Sanware")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(1))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(1))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("JP Sanware")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(2))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(2))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Allied Products")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(3))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(3))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("TAPS")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(4))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(4))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Crestia/Glomour Range")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(5))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(5))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Roca Sanware & Tiles")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(6))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(6))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Roca Taps")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(7))
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disPercentage(7))
+	Call tab2.EndInsert	
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = True
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText("Total")
+	Call tab2.EndInsert
+	Call rtnav2.FindNextElement(RTELEM_TYPE_TABLECELL)
+	Call tab2.BeginInsert(rtnav2)
+	richStyle.Bold = False
+	Call tab2.AppendStyle(richStyle)
+	Call tab2.AppendText(disVal(8))
+	Call tab2.EndInsert	
+	
+	Call body.AppendRTItem(tab2)
+		
+	Call body.Addpagebreak()
+	Call body.Addnewline(2)
+	Call body.addtab(1)
+	Call body.Appendtext("Click The Below Link To Open The Document")	
+	Call body.Addnewline(2)
+	Call body.addtab(1)
+	Call body.Appendtext(link)	
+		
+	Call message.save(True,False) 
+	Call message.Send (False)
+	
+	Exit Function
+errHnd:
+	If Err=13 Then
+		Resume Next		
+	Else
+		MsgBox "Error at line no function. " &CStr(Erl) & "Error is "&Error()
+		Exit Function
+	End If
+	
+End Function
+
+'++LotusScript Development Environment:2:1:CopyAttachments:2:8
+
+Function CopyAttachments(curDatabase As NotesDatabase, docSource As NotesDocument, docTarget As NotesDocument)
+ Dim docTemp As NotesDocument 
+ 
+ 'Remove all attachments from existing document
+ Call docTarget.RemoveItem ("$FILE")
+ 
+ 'Create a temporary document and Use CopyAllItems From the currentdocumentbecause I know that will include the attachment
+	Set docTemp = curDatabase.CreateDocument
+ Call docSource.CopyAllItems (docTemp)
+ 
+ 'Clear all items not named $File From the temp docSource, so that all that's left is the attachment
+ ForAll item In docTemp.Items
+  If Not (UCase(item.Name) = "$FILE") Then
+   docTemp.RemoveItem (item.Name)
+  End If  
+ End ForAll
+ 
+ 'Now, docTemp only has the attachments left on it
+ 'CopyAllItems will copy the attachment, so Use it To copy To docTarget
+ Call docTemp.CopyAllItems (docTarget)
+ Call docTarget.Save (True, False)
+
+End Function
+
+'++LotusScript Development Environment:2:1:XmlConvert:1:8
+Function XmlConvert (txt As String) As String
+  '** get rid of the text characters that XML doesn't like (accented
+  '** characters are usually okay, as long as you use an encoding
+  '** like ISO-8859-1
+ XmlConvert = txt
+ XmlConvert = Replace(XmlConvert, "&", "&amp;")
+ XmlConvert = Replace(XmlConvert, "<", "&lt;")
+ XmlConvert = Replace(XmlConvert, ">", "&gt;")
+End Function
+
+'++LotusScript Development Environment:2:1:ReplaceSubstring:6:8
+
+
+
+
+
+Function ReplaceSubstring(sourcestr As String, fromstr As String, tostr As String) As String
+   ' This function replaces characters in a string. Take all the occurrences of "fromstr"
+   ' in the source string and replace them with "tostr"
+   Dim tempstr As String
+   Dim convstr As String
+   Dim i As Long
+   Dim length As Long
+   tempstr = sourcestr
+   If Len(fromstr) = 0 Then
+      ReplaceSubstring = sourcestr
+      Exit Function
+   End If
+   If InStr(tostr, fromstr) <> 0 Then ' If, for example, "\" is being replaced with "\\"
+      ' Find a character (or set) that is not in the source string.
+      ' Try the extended characters (over 128 ASCII)
+      i = 128
+      length = 1
+      convstr = ""
+      While convstr = ""
+         If InStr(tempstr, String$(length, Chr$(i))) = 0 Then convstr = String$(length, Chr$(i))
+         i = i + 1
+         If i = 256 Then ' If all the extended characters were in there
+            length = length + 1 ' Start over, but try 2 extended characters (or 3 or 4)
+            i = 128
+         End If
+      Wend
+      ' Go through tempstr twice - once replacing fromstr with the computed
+      ' string, then replacing the computed string with tostr
+      While InStr(tempstr, fromstr) <> 0
+         tempstr = Left(tempstr, InStr(tempstr, fromstr)-1) & convstr _
+         & Mid(tempstr, InStr(tempstr, fromstr)+Len(fromstr))
+      Wend
+      While InStr(tempstr, convstr) <> 0
+         tempstr = Left(tempstr, InStr(tempstr, convstr)-1) & tostr _
+         & Mid(tempstr, InStr(tempstr, convstr)+Len(convstr))
+      Wend
+   Else ' It's a normal replace substring call - fromstr is not part of tostr
+      While InStr(tempstr, fromstr) <> 0
+         tempstr = Left(tempstr, InStr(tempstr, fromstr)-1) & tostr _
+         & Mid(tempstr, InStr(tempstr, fromstr)+Len(fromstr))
+      Wend
+   End If
+   ReplaceSubstring = tempstr
+End Function
+
+'++LotusScript Development Environment:2:1:RejectsendMail:1:8
+Function RejectsendMail(curDoc As NotesDocument,sender As Variant,cc As Variant,CurApprover As String )
+	On Error GoTo errHandler
+
+	Dim session As New NotesSession
+	Dim mailDoc As NotesDocument
+	Dim doc As NotesDocument
+	Dim rtitem As NotesRichTextItem
+	Dim rtnav As NotesRichTextNavigator
+	Dim richStyle As NotesRichTextStyle
+	Dim view As NotesView
+	Dim tableColStyles(1 To 11) As NotesRichTextParagraphStyle
+	Dim i As Integer
+	Dim curStage As String
+	Dim displaySent As String
+	Dim url As String
+	Dim htmlCnt As String
+	session.Convertmime=False
+	
+	Set curDatabase=session.CurrentDatabase
+	
+	curStage=curDoc.Getitemvalue(FIELD_CURSTAGE)(0)
+	
+	
+	displaySent=CurApprover   ' curDoc.Getitemvalue("cSalesEx")(0)
+	
+	
+	Dim csiaKey As String
+	csiaKey = "Current Server Internet Address"
+	Dim csiaDoc As NotesDocument
+	Dim keywordView As NotesView
+	Dim csiaValue As String
+	Dim docuid As String
+	Dim dbpath As String
+	Set keywordView=curDatabase.Getview("vwkeywords")
+	Set csiaDoc=keywordView.Getdocumentbykey(csiaKey)
+	If Not csiaDoc Is Nothing Then
+		csiaValue = csiaDoc.Getitemvalue("txtValue")(0)		
+	End If
+	
+	dbpath="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"
+	docuid=curDoc.Universalid
+	url="<a href='notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?editdocument'>Click here to view document</a>"
+	Dim link As String
+	Dim builderName As String
+	Dim projectName As String 	
+
+	builderName=curDoc.Getitemvalue("txtAddressLine2")(0)
+	projectName=curDoc.Getitemvalue("txtProjectNm")(0)
+	
+	link="notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+	
+	htmlCnt=htmlContent(curDoc,url)
+	If sender<>""Then
+		If curDoc.cSalesEx(0)=sender Then
+			link="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+			Call sendHTMLContentAsMail(sender,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		Else
+			link="notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+			Call sendHTMLContentAsMail(sender,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		End If
+	End If
+	If cc <>"" Then
+		If curDoc.cSalesEx(0)=cc Then
+			link="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+			Call sendHTMLContentAsMail(cc,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		Else
+			link="notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+			Call sendHTMLContentAsMail(cc,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		End If	
+	End If
+	%REM
+	If sender<>""Then
+		Call RejectsendHTMLContentAsMail(sender,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+ 	End If
+	link="notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+	If cc <>"" Then
+		Call RejectsendHTMLContentAsMail(cc,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+	End If	
+	%END REM	
+	
+	Exit Function
+errHandler:	
+	Print "Error in reject mail function: "+Error+" :at line number: "+CStr(Erl)
+	Exit Function
+End Function
+
+'++LotusScript Development Environment:2:1:sendMail:6:8
+%REM
+	Function sendMail
+	Description: Comments for Function
+%END REM
+
+Function sendMail(curDoc As NotesDocument,sender As Variant,cc As Variant,CurApprover As String )
+	On Error GoTo errHandler
+	Dim session As New NotesSession
+	Dim mailDoc As NotesDocument
+	Dim doc As NotesDocument
+	Dim rtitem As NotesRichTextItem
+	Dim rtnav As NotesRichTextNavigator
+	Dim richStyle As NotesRichTextStyle
+	Dim view As NotesView
+	Dim tableColStyles(1 To 11) As NotesRichTextParagraphStyle
+	Dim i As Integer
+	Dim curStage As String
+	Dim displaySent As String
+	Dim url As String
+	Dim htmlCnt As String
+	session.Convertmime=False
+		
+	Set curDatabase=session.CurrentDatabase
+	curStage=curDoc.Getitemvalue(FIELD_CURSTAGE)(0)
+	
+	
+	displaySent=CurApprover   ' curDoc.Getitemvalue("cSalesEx")(0)
+	
+	
+		Dim csiaKey As String
+	csiaKey = "Current Server Internet Address"
+	Dim csiaDoc As NotesDocument
+	Dim keywordView As NotesView
+	Dim csiaValue As String
+	Dim docuid As String
+	Dim dbpath As String
+	Set keywordView=curDatabase.Getview("vwkeywords")
+	Set csiaDoc=keywordView.Getdocumentbykey(csiaKey)
+	If Not csiaDoc Is Nothing Then
+		csiaValue = csiaDoc.Getitemvalue("txtValue")(0)		
+	End If
+	dbpath="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"
+	docuid=curDoc.Universalid
+	
+	url="<a href='notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?editdocument'>Click here to view document</a>"
+	Dim link As String
+	Dim builderName As String
+	Dim projectName As String 	
+	builderName=curDoc.Getitemvalue("txtAddressLine2")(0)
+	projectName=curDoc.Getitemvalue("txtProjectNm")(0)
+	link="notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?editdocument"
+	
+	htmlCnt=htmlContent(curDoc,url)
+	If curDoc.submitstage(0)="ASMRework" Or curDoc.submitstage(0)="RSMRework" Or curDoc.submitstage(0)="MKTGRework" Then
+		link="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?editdocument"
+	End If
+	If sender<>""Then
+		If sender=curDoc.cSalesEx(0) Then
+            link="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?editdocument"
+			Call sendHTMLContentAsMail(sender,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		Else
+		   Call sendHTMLContentAsMail(sender,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		End If
+ 	End If
+	link="notes://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+	If cc <>"" Then
+		If cc=curDoc.cSalesEx(0) Then
+			link="http://"+csiaValue+"/"+Replace(curDatabase.Filepath,"\","/")+"/0/"+curDoc.Universalid+"?opendocument"
+			Call sendHTMLContentAsMail(cc,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		Else
+			Call sendHTMLContentAsMail(cc,"","",builderName+"-"+projectName+"-Project/Special Discount-"+curDoc.GetItemValue("txtproposalno")(0),displaySent,htmlCnt,link,curDoc,dbpath,docuid)
+		End If
+		
+	End If		
+	
+	Exit Function
+errHandler:	
+	Print "Error in send mail function: "+Error+" :at line number: "+CStr(Erl)
+	Exit Function
+End Function

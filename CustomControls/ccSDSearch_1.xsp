@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:this.data>
+		<xp:dominoDocument var="dominoDocument1"
+			formName="NewProjectDiscount">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.resources>
+		<xp:script src="/ssjsCommonFunctions.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<xp:table styleClass="parrywareSearchTable" style="width:100%">
+		<xp:tr>
+			<xp:td colspan="6">
+				<xp:label
+					value="Fill in any or all of the following values and click Search"
+					id="label8">
+				</xp:label>
+				<hr />
+			</xp:td>
+
+
+
+
+
+
+
+		</xp:tr>
+		<xp:tr>
+			<xp:td styleClass="parrywareLabelCells">
+				<xp:label value="Project Name" id="label1"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Project_Name"
+					value="#{sessionScope.txtProjectNm}">
+					<xp:typeAhead mode="full" minChars="1"
+						id="typeAhead1" ignoreCase="true">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",1)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td styleClass="parrywareLabelCells">
+
+				<xp:label value="Customer Name" id="label3"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Customer_Name"
+					value="#{sessionScope.txtCustomerNm}">
+					<xp:typeAhead mode="full" minChars="1"
+						id="typeAhead2" ignoreCase="true">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",3)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+
+			</xp:td>
+			<xp:td>
+				
+
+
+			</xp:td>
+
+
+		</xp:tr>
+		<xp:tr>
+			<xp:td styleClass="parrywareLabelCells">
+				<xp:label value="Proposal Number" id="label2"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Proposal_No"
+					value="#{sessionScope.txtproposalno}">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead3">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",2)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td styleClass="parrywareLabelCells">
+
+				<xp:label value="Customer Code" id="label4"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Customer_Code"
+					value="#{sessionScope.txtCustomerCode}">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead4">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",4)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+
+			</xp:td>
+			<xp:td>
+				
+			</xp:td>
+
+
+		</xp:tr>
+		<xp:tr>
+			<xp:td styleClass="parrywareLabelCells">
+				<xp:label value="ASM Code" id="label6"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="ASM_Code"
+					value="#{sessionScope.asmcode}">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead6">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",6)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td styleClass="parrywareLabelCells">
+				<xp:label value="Category" id="label7"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Category"
+					value="#{sessionScope.category}">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead7">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",10)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td rendered="false">
+				<xp:label value="Delivery Date" id="label9"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText value="#{sessionScope.dtdelivery}"
+					id="Delivery_Date" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead8">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",11)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+
+
+		</xp:tr>
+		<xp:tr>
+			<xp:td styleClass="parrywareLabelCells">
+				<xp:label value="Status" id="label5"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:comboBox id="comboBox1"
+					value="#{viewScope.strStatusMsg}">
+					<xp:selectItem itemLabel="--Please Select--"
+						id="selectItem1">
+					</xp:selectItem>
+					<xp:selectItems id="selectItems1">
+						<xp:this.value><![CDATA[#{javascript:@DbColumn(@DbName(),"vwByStatus",1)}]]></xp:this.value>
+					</xp:selectItems>
+
+				</xp:comboBox></xp:td>
+			<xp:td styleClass="parrywareLabelCells">
+				<xp:label value="SE Code" id="Label"
+					style="font-weight:bold">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="SE_Code"
+					value="#{sessionScope.secode}">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead5">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",5)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText></xp:td>
+			<xp:td></xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="Total Amount" id="label10"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Total_Amount"
+					value="#{sessionScope.nmtotals}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						id="typeAhead9" ignoreCase="true">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",12)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+				<xp:label value="PW Discount %" id="label11"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="PW_Discount"
+					value="#{sessionScope.nmdpws}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead10">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",13)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+				<xp:label value="JP Discount%" id="label12"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="JP_Discount"
+					value="#{sessionScope.nmdjps}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead11">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",14)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label value="Allied Products %" id="label13"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Allied_Products"
+					value="#{sessionScope.nmdaps}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead12">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",15)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+				<xp:label value="Taps Discount%" id="label14"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="Taps_Discount"
+					value="#{sessionScope.nmdtaps}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead13">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",16)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+				<xp:label value="Crestia/Glamour Discount%" id="label15"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="CG_Discount"
+					value="#{sessionScope.nmdcgr}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead14">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",17)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td>
+				<xp:label id="label16" style="font-weight:bold"
+					rendered="false">
+					<xp:this.value><![CDATA[RocaSanware&Tiles Discount%]]></xp:this.value>
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="RST_Discount"
+					value="#{sessionScope.nmdrst}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead15">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",18)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td>
+				<xp:label value="RocaTaps Discount%" id="label17"
+					style="font-weight:bold" rendered="false">
+				</xp:label>
+			</xp:td>
+			<xp:td>
+				<xp:inputText id="RTaps_Discount"
+					value="#{sessionScope.nmdrts}" rendered="false">
+					<xp:typeAhead mode="full" minChars="1"
+						ignoreCase="true" id="typeAhead16">
+						<xp:this.valueList><![CDATA[#{javascript:@DbColumn(@DbName(),"(vwSpecialDiscountSearch)",19)}]]></xp:this.valueList>
+					</xp:typeAhead>
+				</xp:inputText>
+			</xp:td>
+			<xp:td></xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td colspan="6">
+
+
+				<hr />
+				<xp:link escape="true" id="link1">
+					<xp:image url="/search.JPG" id="image1">
+						<xp:this.onclick><![CDATA[#{javascript:var trimFieldArray=new Array();
+trimFieldArray[0]="Project_Name"
+trimFieldArray[1]="Proposal_No"
+trimFieldArray[2]="Customer_Name"
+trimFieldArray[3]="Customer_Code"
+trimFieldArray[4]="Status_Msg"
+trimFieldArray[5]="SE_Code"
+trimFieldArray[6]="ASM_Code"
+trimFieldArray[7]="Category"
+trimFieldArray[8]="Delivery_Date"
+trimFieldArray[9]="Total_Amount"
+trimFieldArray[10]="PW_Discount"
+trimFieldArray[11]="JP_Discount"
+trimFieldArray[12]="Taps_Discount"
+trimFieldArray[13]="CG_Discount"
+trimFieldArray[14]="RST_Discount"
+trimFieldArray[15]="RTaps_Discount"
+trimFields(trimFieldArray)
+}]]></xp:this.onclick>
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete" id="eventHandler1">
+							<xp:this.action><![CDATA[#{javascript:var trimFieldArray=new Array();
+trimFieldArray[0]="Project_Name"
+trimFieldArray[1]="Proposal_No"
+trimFieldArray[2]="Customer_Name"
+trimFieldArray[3]="Customer_Code"
+trimFieldArray[4]="Status_Msg"
+trimFieldArray[5]="SE_Code"
+trimFieldArray[6]="ASM_Code"
+trimFieldArray[7]="Category"
+trimFieldArray[8]="Delivery_Date"
+trimFieldArray[9]="Total_Amount"
+trimFieldArray[10]="PW_Discount"
+trimFieldArray[11]="JP_Discount"
+trimFieldArray[12]="Allied_Products"
+trimFieldArray[13]="Taps_Discount"
+trimFieldArray[14]="RTaps_Discount"
+trimFieldArray[15]="RST_Discount"
+trimFieldArray[16]="CG_Discount"
+
+trimFields(trimFieldArray)
+}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:image>
+				</xp:link>
+
+			</xp:td>
+
+
+
+
+
+
+
+		</xp:tr>
+
+
+
+
+
+	</xp:table>
+
+
+	<xp:inputText id="Status_Msg"
+		value="#{sessionScope.strStatusMsg}" rendered="false">
+	</xp:inputText>
+</xp:view>

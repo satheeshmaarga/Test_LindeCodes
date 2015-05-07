@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='182' unid='EB32DD4B57B961D76525778C0025A7DE' sequence='64'>
+<created><datetime>20100827T122118,06+0530</datetime></created>
+<modified><datetime>20140204T114915,80+0530</datetime></modified>
+<revised><datetime>20140204T114915,79+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114915,79+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160219,20+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev1/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=1 Developer/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Karthikeyan A/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$BackgroundR5' sign='true'>
+<rawitemdata type='1'>
+3QYBAJkAmQAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAH0AHAAAAAEAcwBKAAAAAAAAAAAAAAAA
+AAAAAAD2/yoAAAAAAAMAEwAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAU3RyaXBlczTeBgEAmQA=
+</rawitemdata></item>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$TITLE'><text>frmConfigProposalNumber</text></item>
+<item name='$Info' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAIAAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$WindowTitle' sign='true'><formula>"Proposal Number Configuration"</formula></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='txtYear' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='txtConfigPN' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$Fields'><textlist><text>txtConfigPN</text><text>txtYear</text></textlist></item>
+<item name='$V5ACTIONS' sign='true'>
+<rawitemdata type='1'>
+vRx/AAAAAQABAAAAAQAAAAAAAAABAQEJCAACAHn/bAABALKysgABAAAAAAABAP///wABAJ8ADwAD
+ABwAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPz/OgAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAC+/1wAAAABAAoAnwEAAAoAAAAAAAAAU2F2ZSZDbG9zZTwA
+CAASAAIAxgsAAAAAAADtAQMABwAMAAUACTBTMEUAAAASAAIA/BEAAAAAAADtAQMABwAKAAMACTBS
+AF7/MgAAAAAAAAAAABYAAAAAAAAAAAAAAAAAAAAWAAAAFAABAAoAU2F2ZSZDbG9zZQMAvv88AAAA
+AQALAJ8BAAAFAAAAAAAAAENsb3NlACAAAAASAAIAFCcAAAAAAADtAQMABwAMAAUACTBTMEUAXv8u
+AAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAABIAAAAQAAEABQBDbG9zZQADAA==
+</rawitemdata></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frmConfigProposalNumber</text></item>
+<item name='$Body' sign='true'>
+<rawitemdata type='1'>
+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
+hf8IAAEAAAo=
+</rawitemdata></item></note>
+

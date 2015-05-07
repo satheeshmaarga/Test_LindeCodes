@@ -1,0 +1,175 @@
+body{
+	background-color:#C9DCFD;
+}
+
+/*
+	Style for outlines
+*/
+div.entirePage{
+	position:absolute;
+	float:left;
+	width:100%;
+	height:100%;
+}
+
+
+div.content{
+	position:relative;
+	float:left;
+	width:89.5%;
+	height:100%;
+	/*border:1px solid black;*/
+	background-color:white;
+}
+
+div.margin{
+	position:relative;
+	float:left;
+	width:5%;
+	height:100%;
+}
+
+div.logo{
+	position:relative;
+	float:left;
+	width: 10%;
+	height: 5%;
+	top:10px;
+	left: 10px;
+}
+
+div.headertitle{
+	position:relative;
+	float:left;
+	width: 60%;
+	height: 5%;
+	left:0px;
+	text-align:center;
+}
+div.status{
+	position:relative;
+	float:left;
+	width: 29.5%;
+	height: 5%;
+}
+div.btncontainer{
+	position:relative;
+	float:left;
+	width: 99.8%;
+	height:6%;
+	margin-top:2%;
+	border: 1px solid black;
+	background-color:#214278;
+	/*background-image: url(bar.jpg);
+	background-repeat: repeat-x;*/
+}
+
+div.fieldContainer{
+	position:relative;
+	float:left;
+	width: 99.8%;
+	height: 85.8%;
+	border:1px solid black;
+	background:#C9DCFD;
+
+}
+
+/*-------------------------------------------
+	Style for button Submit
+-------------------------------------------*/
+
+.btnresubmit{
+	width:123px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('submit.jpg');
+	background-repeat: no-repeat;
+}
+/*-------------------------------------------
+	Style for button Submit
+-------------------------------------------*/
+
+.btnsubmit{
+	width:123px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('submit.jpg');
+	background-repeat: no-repeat;
+}
+/*-------------------------------------------
+	Style for button Cancel
+-------------------------------------------*/
+
+.btncancel{
+	width:121px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('cancel.jpg');
+	background-repeat: no-repeat;
+}
+
+/*-------------------------------------------
+	Style for button Back
+-------------------------------------------*/
+.btnback{
+	width:123px;
+	height:30px;
+	background-color: transparent;
+	background-image:url('Back.jpg');
+	background-repeat: no-repeat;
+}
+
+.htitle{
+	font: 2.5ex;
+	font-family:Default sans-serif,helvitica;
+	font-weight: bold;
+	font-size:25px;
+	margin-left:11%;
+	margin-top: 8px;
+	color:#214278;
+	margin-bottom: 4px;
+}	
+
+.userName{
+	font-family:sans-serif;
+	size:5pt;
+	color:white;
+	font-weight: bold;
+}
+
+/* CSS For Text box*/
+.textbox {
+	width:95%;;
+	float:left;
+	margin-left:10px;
+	margin-top:1px;
+	padding:0px 4px 6px;
+	font-family:Verdana;
+	font-size:12px;
+}
+
+/* Label CSS*/
+.label {
+	background-color:#214278;
+	border-collapse:collapse;
+	color:white;
+	left:2px;
+	padding-left:4px;
+	font-family:Default sans-serif;
+	font-size:14.1247px;
+	font-weight:bold;
+	border:1px solid #ffffff;
+}
+
+/* CSS For Number Field*/
+.numberField {
+	width:95%;
+	margin-left:10px;
+	margin-top:1px;
+	padding:0px 4px 6px;
+	font-family:Verdana;
+	font-size:12px;
+}
+.fldCell{
+	margin-left:3px;
+}

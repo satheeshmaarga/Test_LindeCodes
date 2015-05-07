@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='filter' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='606' unid='371E637CEC3D0BADC1257A130040D8C0' sequence='3'>
+<created><datetime dst='true'>20120604T134817,92+02</datetime></created>
+<modified><datetime>20140204T114951,06+0530</datetime></modified>
+<revised><datetime>20140204T114951,05+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114951,05+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160223,42+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$SiteMapList' sign='true'>
+<rawitemdata type='1a'>
+AQYBAAEAAgBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAACAEgATwABCAAAZAAAAAAAAAAJAAAALgAAAAAAAAAPAAAAAAAAAAkA
+AwADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFU2VhcmNoAAEA9v8rAAAAAAADAAMA
+CQAAAAAAAAAAAAAAAAAAAAAAAAAAAGZybUV4cG9ydD8ABWNvbnRlbnRGcmFtZQAABVNlYXJjaABI
+AG8AAQgAAGUAAAAAAAAAFAAAADgAAAAAAAAADwAAAAAAAAAUAAMAAwAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAABUFwcHJvdmFsc0R1cmF0aW9uAAEA9v82AAAAAAADAAMAFAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAGZybUV4cG9ydEJ5QXBwcm92YWxzAAVjb250ZW50RnJhbWUAAAVBcHByb3Zh
+bHNEdXJhdGlvbgA=
+</rawitemdata></item>
+<item name='$TITLE'><textlist><text>olTools</text><text>olTools</text></textlist></item>
+<item name='$Flags'><text>m</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item></note>
+

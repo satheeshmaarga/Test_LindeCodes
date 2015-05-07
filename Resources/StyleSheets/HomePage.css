@@ -1,0 +1,284 @@
+#mainlogo{
+background-image:url('logo.jpg');
+background-repeat:no-repeat;
+height:90px;
+margin-left:0;
+margin-right:0;
+width:20%;
+
+}
+
+#MainContainer{
+width:97%;
+margin-left:10px;
+border:1px solid #632523;
+
+}
+
+
+body {
+background-color:white;
+background-repeat:no-repeat;
+}
+
+#footer{
+background-color:#632523;
+color:white;
+font-family:sans-serif;
+font-size:13px;
+height:50px;
+letter-spacing:-1px;
+margin-left:0;
+top:690px;
+}
+
+
+#logo {
+background-color:#632523;
+background-repeat:repeat;
+border:0px dotted #BBBBBB;
+height:90px;
+margin-left:181px;
+margin-top:-90px;
+}
+
+#contentFrame {
+background-color:#F4E9E9;
+background-repeat:repeat;
+border:0px solid #632523;
+width:760px;
+height:479px;
+margin-left:193px;
+margin-top:-478px;
+border-top:1px solid #632523;
+border-right:1px solid #632523;
+border-bottom:1px solid #632523;
+}
+
+
+#logo a {
+color:white;
+font-family:sans-serif;
+font-size:12px;
+font-weight:normal;
+position:absolute;
+right:53px;
+text-align:right;
+text-decoration:none;
+top:24px;
+}
+
+
+#logo a:hover{
+background-color:white;
+border-left:0 solid #294159;
+color:black;
+font-weight:bold;
+font-size:12px;
+padding-left:0px;
+}
+
+
+#logo p {
+font-family:sans-serif;
+font-variant:small-caps;
+color:white;
+position:absolute;
+
+font-size:26px;
+margin-top:17px;
+margin-left:130px;
+padding-left:14px;
+letter-spacing:-1px;
+}
+
+
+#menu{
+background-color:white;
+margin-left:0px;
+margin-right:0px;
+height:27px;
+}
+
+
+
+#tablist{
+background-color:#F4E9E9;
+border-left:1px solid #5E3732;
+color:black;
+font-family:sans-serif;
+font-size:12px;
+height:27px;
+margin-bottom:0;
+margin-left:181px;
+margin-top:0;
+padding:4px;
+}
+
+#tablist li{
+list-style: none;
+display: inline;
+margin: 0;
+}
+
+#tablist li a{
+text-decoration: none;
+padding: 3px 0.5em;
+margin-right: 3px;
+color:black;
+}
+
+#tablist li a:link{ 
+color: black;
+}
+
+#tablist li a:visited {
+color: black;
+}
+
+
+#tablist li a:active{
+color: black;
+}
+
+#xopy hover{
+background-color:#5E4D3B;
+border-color:#666666 #333333 #333333 #666666;
+border-style:solid;
+border-width:1px 2px 2px 1px;
+}
+
+#tablist li a:hover{
+background-color:#f2dcdb;
+color:black;
+font-weight:bold;
+}
+
+#tablist li a:active{
+background-color:#f2dcdb;
+color:black;
+font-weight:bold;
+}
+
+
+
+
+
+iFrame{
+width:100%;
+height:100%;
+border:0;
+}
+
+#submenu p {
+color:black;
+font-family:sans-serif;
+font-size:13px;
+letter-spacing:-1px;
+padding-left:3px;
+}
+
+.menubar{
+color:black;
+font-family:sans-serif;
+font-size:13px;
+height:350px%;
+margin-left:10px;
+width:183px;
+letter-spacing:-1px;
+padding-left:3px;
+background-color:#632523;
+background-repeat:repeat;
+border:0px dotted #BBBBBB;
+}
+#submenu{
+background-color:#F4E9E9;
+border:0px solid #632523;
+height:10px;
+margin-left:10px;
+border-left:1px solid #632523;
+border-right:1px solid #632523;
+border-bottom:1px solid #632523;
+width:183px;
+}
+
+#bottom{
+background-color:#F4E9E9;
+border:0px solid #632523;
+height:250px;
+margin-left:10px;
+border-left:1px solid #632523;
+border-right:1px solid #632523;
+border-bottom:1px solid #632523;
+width:183px;
+}
+
+#ContentPane {
+border:1px solid #632523;
+height:650px;
+margin-left:181px;
+margin-top:-650px;
+width:auto;
+}
+
+#reports{
+background-image:url('gradbar_1.jpg');
+border:1px solid #7A7A7A;
+width:181px;
+margin-left:1px;
+
+font-family:sans-serif;
+font-size:12px;
+
+}
+
+
+
+
+
+#SubList {
+font-family:sans-serif;
+font-size:13px;
+list-style-type: none;
+margin-top:0px;
+background-color:#632523;
+height:40px;
+margin-left:-1px;
+padding-left:42px;
+
+}
+
+#SubList li {
+padding:7px 7px 7px 9px;
+}
+
+
+
+
+#SubList li a{
+margin-left:-25px;
+
+font-family:sans-serif;
+font-size:13px;
+color: white;
+text-decoration: none;
+}
+
+#SubList li a:hover{
+background-color:white;
+border-left:0 solid #294159;
+color:black;
+font-weight:bold;
+font-size:12px;
+padding-left:0px;
+}
+
+#Sublist li a:active{
+background-color:white;
+border-left:0 solid #294159;
+color:black;
+font-weight:bold;
+font-size:12px;
+padding-left:0px;
+}
+

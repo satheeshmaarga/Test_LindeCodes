@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"> 
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+		<xp:styleSheet href="/HomePage.css"></xp:styleSheet>
+		<xp:script src="/ssjsCommonFunctions.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:if(typeof sessionScope.newRequest=="undefined") sessionScope.newRequest=true
+if(typeof sessionScope.myRecords=="undefined") sessionScope.myRecords=false
+if(typeof sessionScope.projectDiscTracker=="undefined") sessionScope.projectDiscTracker=false
+if(typeof sessionScope.splDiscTracker=="undefined") sessionScope.splDiscTracker=false
+if(typeof sessionScope.tools=="undefined") sessionScope.tools=false}]]></xp:this.afterPageLoad>
+	<xp:panel id="leftMenu_ParrywareRocaHomePage" styleClass="parrywareLeftMenuContainer">
+		<xp:br></xp:br>
+		<xp:table style="width:100%"
+			styleClass="parrywareSideNavTable">
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItems"
+					style="padding-left:10%">
+					<xp:label value="New Request" id="label5"
+						style="font-weight:bold">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="partial" refreshId="leftMenu_ParrywareRocaHomePage"
+							id="eventHandler1">
+							<xp:this.action><![CDATA[#{javascript:sessionScope.newRequest=!sessionScope.newRequest}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:label>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.newRequest}">
+					<xp:label id="label6"
+						styleClass="parrywareLeftMenuItems">
+
+					</xp:label>
+					<xp:link escape="true" text="Project Discount"
+						id="link1">
+						<xp:this.value><![CDATA[#{javascript:"/web/frmNewProjectDiscount?OpenForm"}]]></xp:this.value>
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection">
+					<xp:this.rendered><![CDATA[#{javascript://sessionScope.newRequest
+return false}]]></xp:this.rendered>
+					<xp:label id="label7"
+						styleClass="parrywareLeftMenuItems">
+
+					</xp:label>
+					<xp:link escape="true" text="Special Discount"
+						id="link2">
+						<xp:this.value><![CDATA[#{javascript:"/SpecialDiscount?OpenForm"}]]></xp:this.value>
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.newRequest}">
+					&#160;
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td
+					styleClass="parrywareLeftMenuSectionItemsBottomBordered">
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td>&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItems"
+					style="padding-left:10%">
+					<xp:label value="My Records" id="label9"
+						style="font-weight:bold">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete" id="eventHandler2">
+							<xp:this.action><![CDATA[#{javascript:sessionScope.myRecords=!sessionScope.myRecords}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:label>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.myRecords}">
+					<xp:label id="label11"
+						styleClass="parrywareLeftMenuItems">
+
+					</xp:label>
+					<xp:link escape="true" text="My Discounts"
+						id="link3" value="/xpRocaMyRequests.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.myRecords}">
+					<xp:link escape="true" text="Awaiting Approval"
+						id="link4" value="/xpRocaForMyApproval.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.myRecords}">
+					&#160;&#160; &#160;
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td
+					styleClass="parrywareLeftMenuSectionItemsBottomBordered">
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td>&#160;&#160;&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItems">
+					<xp:label value="Project Discount Tracker"
+						id="label1" styleClass="parrywareLeftMenuItems">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete" id="eventHandler3">
+							<xp:this.action><![CDATA[#{javascript:sessionScope.projectDiscTracker=!sessionScope.projectDiscTracker}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:label>
+
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="By Status" id="link5"
+						value="/xpRocaByStatus.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+
+					<xp:link escape="true" text="By Order Type"
+						id="link7" value="/xpRocaByOrderType.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+
+					<xp:link escape="true" text="Project Discount"
+						id="link6" value="/xpRocaProposalNumber.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Project Name"
+						id="link8" value="/xpRocaByProjectName.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="By Sales Executive"
+						id="link9" value="/xpRocaBySalesExecutive.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Awaiting ASM Approval"
+						id="link10" value="/xpRocaAwaitingApproval-ASM.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Awaiting RSM Approval"
+						id="link11" value="/xpRocaAwaitingApproval-RSM.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Awaiting NSM Approval"
+						id="link12" value="/xpRocaAwaitingApproval-NSM.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Awaiting VP Approval"
+						id="link13" value="/xpRocaAwaitingApproval-VP.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Awaiting MD Approval"
+						id="link14" value="/xpRocaAwaitingApproval-MD.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Awaiting Order Entry"
+						id="link15" value="/xpRocaAwaitingOrderEntry.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" id="link16"
+						text="Completed Orders" value="/xpRocaOrderCompleted.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					<xp:link escape="true" text="Rejected Requests"
+						id="link17" value="/xpRocaRejected.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.projectDiscTracker}">
+					&#160;
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td
+					styleClass="parrywareLeftMenuSectionItemsBottomBordered">
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td>&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItems"
+					style="padding-left:10%">
+					&#160;
+					<xp:label value="Special Discount Tracker"
+						id="label3" style="font-weight:bold">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete" id="eventHandler4">
+							<xp:this.action><![CDATA[#{javascript:sessionScope.splDiscTracker=!sessionScope.splDiscTracker}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:label>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.splDiscTracker}">
+					<xp:link escape="true" text="By Proposal Number"
+						id="link19" value="/xpRocaSDProposalNumber.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.splDiscTracker}">
+					<xp:link escape="true" text="By Project Name"
+						id="link20" value="/xpRocaSDProjectName.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.splDiscTracker}">
+					<xp:link escape="true" text="By Status" id="link21"
+						value="/xpRocaSDStatus.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.splDiscTracker}">
+					&#160;
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td
+					styleClass="parrywareLeftMenuSectionItemsBottomBordered">
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td>&#160;</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItems">
+					<xp:label value="Tools" id="label2"
+						styleClass="parrywareLeftMenuItems">
+						<xp:eventHandler event="onclick" submit="true"
+							refreshMode="complete" id="eventHandler5">
+							<xp:this.action><![CDATA[#{javascript:sessionScope.tools=!sessionScope.tools}]]></xp:this.action>
+						</xp:eventHandler>
+					</xp:label>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection" id="td1"
+					rendered="#{javascript:sessionScope.tools}">
+					<xp:link escape="true" text="Search Phase 1"
+						id="link18" value="/xpRocaSearch_Phase1.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.tools}">
+
+					<xp:link escape="true" text="Search Phase 2"
+						id="link22" value="/xpRocaSearch_Phase2.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.tools}">
+					<xp:link escape="true" text="Search Phase 3"
+						id="link24" value="/xpRocaSDSearch_Phase1.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+			<xp:tr>
+				<xp:td styleClass="parrywareMenuSection"
+					rendered="#{javascript:sessionScope.tools}">
+					<xp:link escape="true" text="Search Phase 4"
+						id="link23" value="/xpRocaSDSearch_Phase2.xsp">
+					</xp:link>
+				</xp:td>
+			</xp:tr>
+
+
+
+			<xp:tr>
+				<xp:td styleClass="parrywareLeftMenuSectionItemsBottomBordered"></xp:td>
+			</xp:tr>
+		</xp:table></xp:panel>
+
+</xp:view>

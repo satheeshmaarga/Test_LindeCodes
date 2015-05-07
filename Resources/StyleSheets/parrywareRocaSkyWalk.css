@@ -1,0 +1,105 @@
+
+	/*title bar styles*/
+	.homePage	{
+		background-color:#DCE6F2;
+	}
+	
+	.parryWareBannerSection	{
+		border-collapse:collapse;
+	}
+	
+	.parrywareBanner	{
+		background-color:#B9D7F3;
+	}
+	
+	.parrywareTitle	{
+		font-size: 35px; 
+		font-family: Arial,Helvetica,sans-serif;
+		color: #385D8A;
+	}
+	
+	.parrywareActionBar	{
+		background-color:#385D8A;
+		color: #ffffff;
+	}
+	
+	.parrywareHighlightedLinks{
+		color: #E7F7C8;
+		font-weight:bold;
+	}
+	
+	.parrywareNormalLinks	{
+		color: #ffffff;
+		font-weight:bold;
+	}
+	
+	/*left menu navigation styles*/
+	.parrywareMenuSection	{
+		background-color:#DFEBFA;
+		color: #1472B5;
+		padding-left:20.0%;
+		border-style:solid;
+		border-width:thin;
+		border-top:0px;
+		border-bottom:0px;
+	}
+	
+	.parrywareLeftMenuContainer	{
+		background-color:#E5F2FB;
+		height:832.0px;
+		/*The following line is explicitly for ie6*/
+		width:100%;
+	}
+	
+	.parrywareLeftMenuSectionItems	{
+		background-color: #E7F7C8;
+		color: #1472B5;
+		font-weight:bold;
+		padding-left:10.0%;
+		border-style:solid;
+		border-width:thin;
+		border-top:0px;
+		border-bottom:0px;
+	}
+	
+	.parrywareLeftMenuSectionItemsBottomBordered	{
+		color: #1472B5;
+		border-style:solid;
+		border-width:thin;
+		border-top:0px;		
+	}
+	
+	.parrywareSideNavTable	{
+		border-collapse:collapse;
+	}
+	
+	.parrywareSearchTable	{
+		font-weight:bold;
+		background-color:#DCE6F2;
+	}
+	
+	/* xpage form styles */
+	.parrywareLabelCells {
+		font-weight:bold;	
+		border:1px solid #385D8A;
+		background-color:#B9D7F3;
+		color:#385D8A;
+		padding:5px;
+		
+	}
+	
+	.parrywareDataCells {
+		border:1px solid #385D8A;
+		background-color:#FFFFFF;
+		padding:5px;			
+	}
+	
+	.parrywareDataTables{
+		width:100%;
+		border:1px solid #385D8A;	
+		border-collapse:collapse;
+		padding-top:3px;
+		padding-bottom:3px;
+		padding-left:3px;
+		padding-right:3px;
+	}

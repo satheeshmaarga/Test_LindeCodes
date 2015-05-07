@@ -1,0 +1,42 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library lsChangeSEName
+	Created Aug 27, 2011 by User One/Maargasystems
+	Description: Comments for Library
+%END REM
+Option Public
+Option Declare
+
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub Initialize
+Declare Function ChangeSEName()
+
+'++LotusScript Development Environment:2:5:(Declarations):0:2
+
+'++LotusScript Development Environment:2:2:Initialize:1:10
+Sub Initialize
+		
+End Sub
+
+
+'++LotusScript Development Environment:2:1:ChangeSEName:5:8
+%REM
+	Function ChangeSEName
+	Description: Comments for Function
+%END REM
+Function ChangeSEName()
+	Dim session As New NotesSession
+	Dim db As NotesDatabase
+	Dim collection As NotesDocumentCollection
+	Dim doc As NotesDocument
+	Set db = session.CurrentDatabase
+	Set collection = db.UnprocessedDocuments
+	Set doc = collection.GetFirstDocument()
+	While Not(doc Is Nothing)
+		doc.SEcode = "C007"
+		Call doc.Save( False, True )
+		Set doc = collection.GetNextDocument(doc)
+	Wend
+End Function

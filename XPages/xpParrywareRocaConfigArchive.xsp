@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+	<xp:this.data>
+		<xp:dominoDocument var="archiveConfigDoc" formName="Archive"></xp:dominoDocument>
+	</xp:this.data>
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAdminPage"}]]></xp:this.afterPageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td
+				style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+										<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN>
+									</xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:panel
+											styleClass="parrywareActionBar" style="text-align:center">
+											<xp:label
+												value="Archive Configuration Document" id="label8"
+												style="font-weight:bold">
+											</xp:label>
+											</xp:panel>
+										<xp:br></xp:br><xp:image url="/Edit Image.jpg" id="image1">
+										<xp:this.rendered><![CDATA[#{javascript:try {
+	return!(archiveConfigDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered>
+										<xp:eventHandler event="onclick" submit="true" refreshMode="complete" immediate="true">
+											<xp:this.action><![CDATA[#{javascript:try	{
+	redirectToCurrentDocument(true);	
+} catch(error)	{
+	_dump(error.Message +" occured in page xpParrywareRocaConfigArea when the Edit button is clicked");
+}
+}]]></xp:this.action>
+										</xp:eventHandler></xp:image><xp:image url="/Save Image.jpg" id="image3">
+										<xp:this.rendered><![CDATA[#{javascript:
+try {
+	return(archiveConfigDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered><xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+	<xp:this.action>
+
+		<xp:actionGroup>
+			<xp:save></xp:save>
+
+
+
+
+
+			<xp:openPage name="/xpRocaConfigArchive.xsp"></xp:openPage>
+		</xp:actionGroup>
+	</xp:this.action></xp:eventHandler></xp:image><xp:image url="/Close Image.jpg" id="image2">
+										<xp:eventHandler event="onclick" submit="true" refreshMode="complete" immediate="true">
+											<xp:this.action>
+												<xp:openPage
+													name="/xpRocaConfigArchive.xsp">
+												</xp:openPage>
+											</xp:this.action></xp:eventHandler></xp:image>
+										
+										
+										<xp:br></xp:br>
+										<xp:inputText id="radioValue" defaultValue="0" rendered="false"></xp:inputText>
+										<xp:table
+											styleClass="parrywareDataTables" style="width:100%">
+											
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Attachment Archive" id="label2"
+														style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+
+													<xp:radio text="On"
+														groupName="Group1" value="#{archiveConfigDoc.on}"
+														id="Attachment_On" selectedValue="1">
+													<xp:eventHandler
+														event="onchange" submit="true" refreshMode="complete">
+														<xp:this.action><![CDATA[#{javascript:try{
+	var currValue=getComponent("Attachment_On").getValue();
+
+	var radioValueField=getComponent("radioValue");
+	(currValue=="1")? radioValueField.setValue("1") : radioValueField.setValue("0");
+	
+}catch(err){
+	//do nothing
+}}]]></xp:this.action>
+													</xp:eventHandler></xp:radio>
+													<xp:radio text="Off"
+														id="Attachment_Off" groupName="Group1" defaultSelected="true" selectedValue="0">
+													<xp:eventHandler
+														event="onchange" submit="true" refreshMode="complete">
+														<xp:this.action><![CDATA[#{javascript:try{
+	var currValue=getComponent("Attachment_On").getValue();
+	sessionScope.a=currValue;
+	var radioValueField=getComponent("radioValue");
+	(currValue=="1")? radioValueField.setValue("1") : radioValueField.setValue("0");
+	
+}catch(err){
+	//do nothing
+}}]]></xp:this.action>
+													</xp:eventHandler></xp:radio>
+													</xp:td>
+											</xp:tr>
+											<xp:tr id="archiveDbpahtid">
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:this.rendered><![CDATA[#{javascript:var radioValueField=getComponent("radioValue");
+return (radioValueField.getValue()=="1") }]]></xp:this.rendered>
+													<xp:label
+														value="Database path" id="label3"
+														style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+
+													<xp:this.rendered><![CDATA[#{javascript:var radioValueField=getComponent("radioValue");
+return (radioValueField.getValue()=="1") }]]></xp:this.rendered>
+													<xp:inputText
+														id="dbPath" style="width:160px"
+														value="#{archiveConfigDoc.dbpath}">
+													<xp:this.validators>
+														<xp:validateRequired
+															message="Please mention database Archive Database Path">
+														</xp:validateRequired>
+													</xp:this.validators><xp:this.required><![CDATA[#{javascript:var currValue=getComponent("Attachment_On").getValue();
+ 
+return (currValue=="1");}]]></xp:this.required></xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr id="archiveDefalutid">
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:this.rendered><![CDATA[#{javascript:var radioValueField=getComponent("radioValue");
+return (radioValueField.getValue()=="1") }]]></xp:this.rendered>
+													<xp:label
+														value="Defaults" id="label4" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:this.rendered><![CDATA[#{javascript:var radioValueField=getComponent("radioValue");
+return (radioValueField.getValue()=="1") }]]></xp:this.rendered>
+													<xp:inputText
+														style="width:160px" value="#{archiveConfigDoc.default}"
+														id="defaults">
+													<xp:this.validators>
+														<xp:validateRequired
+															message="Please mention Defaults">
+														</xp:validateRequired>
+													</xp:this.validators><xp:this.required><![CDATA[#{javascript:var currValue=getComponent("Attachment_On").getValue();
+ 
+return (currValue=="1");}]]></xp:this.required></xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td> &#160;</xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells" colspan="2">
+													<xp:label
+														value="Schedule Archive" id="label5"
+														style="font-size:11pt;font-weight:bold">
+													</xp:label>
+												</xp:td>
+
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Archive days" id="label6"
+														style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														id="archive_days" style="width:160px"
+														value="#{archiveConfigDoc.ArDays}" required="true">
+														<xp:this.converter>
+															<xp:convertNumber
+																type="number">
+															</xp:convertNumber>
+														</xp:this.converter>
+														<xp:this.validators>
+															<xp:validateRequired
+																message="Please mention Archive days">
+															</xp:validateRequired>
+														</xp:this.validators></xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Archive path" id="label7"
+														style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														id="archive_path" style="width:160px"
+														value="#{archiveConfigDoc.ArPath}" required="true">
+													<xp:this.validators>
+														<xp:validateRequired
+															message="Please provide Archive path">
+														</xp:validateRequired>
+													</xp:this.validators></xp:inputText>
+												</xp:td>
+											</xp:tr>
+										</xp:table>
+									</xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

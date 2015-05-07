@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='6b2' unid='1DB14F7CB5D99E08C1257BB80042BB3C' sequence='3'>
+<created><datetime dst='true'>20130730T140853,08+02</datetime></created>
+<modified><datetime>20140204T114951,83+0530</datetime></modified>
+<revised><datetime>20140204T114951,82+0530</datetime></revised>
+<lastaccessed><datetime>20140404T020241,24+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160224,18+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>vwMktHide</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+qAAFADIALgAEAA0ACAAJAAQAdHh0cHJvcG9zYWxub2N1clN0YWdlJENvbmZsaWN0JFJFRgQABAAA
+AFgABQAEAEZvcm0BABsAY2xpZW50ZnJtTmV3UHJvamVjdERpc2NvdW50AAoCBAAFAAQARm9ybQEA
+EgBOZXdQcm9qZWN0RGlzY291bnQKAgQAHQIEAAMABwAYABIACUwxUzRTNVM3UzhTMTBTMTFT
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+GgABAABECGYAAAANAHR4dHByb3Bvc2Fsbm8=
+</rawitemdata></item>
+<item name='$ViewFormat' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQACAAIACAAAAFZDAQANAAgAAAAAAFAAAQAACgABAAAAAAAAAAICAAAAVkMAAAgACQAAAAAAUAAB
+AAAKAAAAAAAAAAAAAgIAAAB0eHRwcm9wb3NhbG5vUHJvcG9zYWxjdXJTdGFnZUN1ciBTdGFnZSYA
+AQAAAAEBAAkBAAAKAQEOCgAAAQCtKwEAAQABAAAAAAAAAAAAV0MBAQAJAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAFdDAQEACQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAP//
+AAAAAAAAAAAAAAAAAABCAAAAAAABAP///wAFAP///wABAAAAAAAAAAAAAAAAAAEA////AAEA////
+AAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAIAAAAAAABAA==
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>PY</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.3</text></item></note>
+

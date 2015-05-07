@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAppPage";}]]></xp:this.afterPageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+									<xc:ccParrywareLeftMenu></xc:ccParrywareLeftMenu></xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										
+										<xp:viewPanel rows="30"
+											id="viewPanel1" viewStyle="width:100.0%" var="rowData">
+											<xp:this.facets>
+												<xp:pager
+													partialRefresh="true" layout="Previous Group Next"
+													xp:key="headerPager" id="pager1">
+												</xp:pager>
+												<xp:viewTitle
+													xp:key="viewTitle" id="viewTitle1"
+													value="Discounts Awaiting ASM Approval">
+												</xp:viewTitle>
+											</xp:this.facets>
+											<xp:this.data>
+												<xp:dominoView
+													var="vwAwaitingApproval-ASM"
+													viewName="vwAwaitingApproval-ASM">
+												</xp:dominoView>
+											</xp:this.data>
+											<xp:viewColumn
+												id="viewColumn1" contentType="HTML">
+												<xp:this.value><![CDATA[#{javascript:try	{
+	"<a href='/"+@DbName()[1]+"/0/"+rowData.getUniversalID()+"?OpenDocument'>"
+	+rowData.getColumnValue("Proposal Number")+"</a>"	
+}	catch	(error)	{
+	error.message;
+}}]]></xp:this.value><xp:viewColumnHeader
+													value="Proposal Number" id="viewColumnHeader1">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Project Name" id="viewColumn2">
+												<xp:viewColumnHeader
+													value="Project Name" id="viewColumnHeader2">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Customer Name" id="viewColumn3">
+												<xp:viewColumnHeader
+													value="Customer Name" id="viewColumnHeader3">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Order Type" id="viewColumn4">
+												<xp:viewColumnHeader
+													value="Order Type" id="viewColumnHeader4">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Tin-Number" id="viewColumn5">
+												<xp:viewColumnHeader
+													value="Tin-Number" id="viewColumnHeader5">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+										</xp:viewPanel></xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

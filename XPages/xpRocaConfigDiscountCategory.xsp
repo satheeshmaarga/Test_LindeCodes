@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAdminPage"}]]></xp:this.afterPageLoad>
+	<xp:this.beforePageLoad><![CDATA[#{javascript://check if the user has admin role. If yes proceed else redirect to home page
+	var acl:NotesACL= database.getACL();
+	var entry:NotesACLEntry = acl.getEntry(session.getEffectiveUserName())
+	if (entry==null)	{
+		entry = acl.getEntry(session.getEffectiveUserName())
+	}
+  
+	if (entry==null)	{
+		return false;
+	}
+
+	if (!entry.isRoleEnabled("Admin")){
+		context.redirectToPage("xpParrywareRoca.xsp")
+	}	}]]></xp:this.beforePageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu></xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+									<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN></xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:viewPanel rows="30"
+											id="viewPanel1" viewStyle="width:100.0%" var="rowData" pageName="/xpRocaConfigDiscountCategoryForm.xsp">
+											<xp:this.facets>
+												<xp:pager
+													partialRefresh="true" layout="Previous Group Next"
+													xp:key="headerPager" id="pager1">
+												</xp:pager>
+												<xp:viewTitle
+													xp:key="viewTitle" id="viewTitle1"
+													value="Discount Category Configuration">
+												</xp:viewTitle>
+											</xp:this.facets>
+											<xp:this.data>
+												<xp:dominoView
+													var="vwDiscountCategory" viewName="vwDiscountCategory">
+												</xp:dominoView>
+											</xp:this.data>
+											<xp:viewColumn
+												columnName="Category" id="viewColumn1" displayAs="link" openDocAsReadonly="true">
+												<xp:viewColumnHeader
+													value="Category" id="viewColumnHeader1">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="AH Current" id="viewColumn2">
+												<xp:viewColumnHeader
+													value="AH Current" id="viewColumnHeader2">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="AH Proposed" id="viewColumn3">
+												<xp:viewColumnHeader
+													value="AH Proposed" id="viewColumnHeader3">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="RSM Current" id="viewColumn4">
+												<xp:viewColumnHeader
+													value="RSM Current" id="viewColumnHeader4">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="RSM Proposed" id="viewColumn5">
+												<xp:viewColumnHeader
+													value="RSM Proposed" id="viewColumnHeader5">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="NSM Current" id="viewColumn6">
+												<xp:viewColumnHeader
+													value="NSM Current" id="viewColumnHeader6">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="NSM Proposed" id="viewColumn7">
+												<xp:viewColumnHeader
+													value="NSM Proposed" id="viewColumnHeader7">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="VP Current" id="viewColumn8">
+												<xp:viewColumnHeader
+													value="VP Current" id="viewColumnHeader8">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="VP Proposed" id="viewColumn9">
+												<xp:viewColumnHeader
+													value="VP Proposed" id="viewColumnHeader9">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="MD Current" id="viewColumn10">
+												<xp:viewColumnHeader
+													value="MD Current" id="viewColumnHeader10">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="MD Proposed" id="viewColumn11">
+												<xp:viewColumnHeader
+													value="MD Proposed" id="viewColumnHeader11">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+										</xp:viewPanel>
+									</xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="65257C740039E3BC" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="32e" sequence="103" unid="1067E2932494E148652577930046B22C">
+<created><datetime>20100903T182211,32+0530</datetime></created>
+<modified><datetime>20140204T114954,54+0530</datetime></modified>
+<revised><datetime>20140204T114954,53+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114954,53+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160220,02+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev1/O=org</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name="$TITLE"><text>parrywareRocaSkyWalk.css</text></item>
+<item name="$MimeType" sign="true"><text>text/css</text></item>
+<item name="$Flags"><text>34C=Q</text></item>
+
+
+<item name="$FileNames" sign="true"><text>parrywareRocaSkyWalk.css</text></item></note>

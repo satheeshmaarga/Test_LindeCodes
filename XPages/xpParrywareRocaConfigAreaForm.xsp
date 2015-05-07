@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAdminPage"}]]></xp:this.afterPageLoad>
+	<xp:this.data>
+		<xp:dominoDocument var="areaConfigDoc" formName="Area"
+			action="openDocument">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td
+				style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+										<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN>
+									</xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:panel
+											styleClass="parrywareActionBar" style="text-align:center">
+
+
+											&#160;
+											<xp:label
+												value="Area Configuration Document" id="label1" style="font-weight:bold">
+											</xp:label>
+										</xp:panel>
+										
+										
+										<xp:br></xp:br>
+										
+										
+										<xp:image url="/Edit Image.jpg" id="image1">
+										<xp:this.rendered><![CDATA[#{javascript:try {
+	return!(areaConfigDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered>
+										<xp:eventHandler event="onclick"
+											submit="true" refreshMode="complete" immediate="true">
+											<xp:this.action><![CDATA[#{javascript:try	{
+	redirectToCurrentDocument(true);	
+} catch(error)	{
+	_dump(error.Message +" occured in page xpParrywareRocaConfigArea when the Edit button is clicked");
+}
+}]]></xp:this.action>
+										</xp:eventHandler></xp:image><xp:image url="/Save Image.jpg" id="image3">
+										<xp:this.rendered><![CDATA[#{javascript:
+try {
+	return(areaConfigDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered><xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+	<xp:this.action>
+
+		<xp:actionGroup>
+			<xp:save></xp:save>
+
+
+			<xp:openPage name="/xpRocaConfigArea.xsp"></xp:openPage>
+		</xp:actionGroup>
+	</xp:this.action></xp:eventHandler></xp:image><xp:image url="/Close Image.jpg" id="image2">
+										<xp:eventHandler event="onclick" submit="true" refreshMode="complete" immediate="true">
+											<xp:this.action>
+												<xp:openPage
+													name="/xpRocaConfigArea.xsp">
+												</xp:openPage>
+											</xp:this.action></xp:eventHandler></xp:image>
+										
+										<xp:br></xp:br>
+										<xp:messages id="messages1"></xp:messages>
+										<xp:table style="width:100.0%" styleClass="parrywareDataTables">
+											
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Area" id="area_Label1" for="area1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells" style="width:162.0px">
+													<xp:inputText
+														value="#{areaConfigDoc.area}" id="area1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="Area is not mentioned">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="partial" minChars="1" ignoreCase="true"
+															id="typeAhead1">
+															<xp:this.valueList><![CDATA[Chennai-South
+Hyderabad
+Kolkata-South/West
+Orrisa
+Delhi East&Central
+Jaipur
+Mumbai Central
+Pune-1]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+												<xp:td></xp:td>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="RSM Code" id="rSMcode_Label1" for="rSMcode1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells" style="width:164.0px">
+													<xp:inputText
+														value="#{areaConfigDoc.RSMcode}" id="rSMcode1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="RSM Code is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="SE Name" id="sEname_Label1" for="sEname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													style="width:30.0%" styleClass="parrywareDataCells">
+													<xp:inputText
+														id="sEname1"
+														required="true" value="#{areaConfigDoc.SEname}">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="SE Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+												<xp:td></xp:td>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="NSM Name" id="nSMname_Label1" for="nSMname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.NSMname}" id="nSMname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="NSM Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="SE Code" id="sEcode_Label1" for="sEcode1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.SEcode}" id="sEcode1"
+														required="true">
+													<xp:this.validators>
+														<xp:validateRequired
+															message="SECode is required">
+														</xp:validateRequired>
+													</xp:this.validators></xp:inputText>
+												</xp:td>
+												<xp:td></xp:td>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="LE Name" id="lEname_Label1" for="lEname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.LEname}" id="lEname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="LE Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="ASM Name" id="aSMname_Label1" for="aSMname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.ASMname}" id="aSMname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="ASM Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+												<xp:td></xp:td>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="VP Name" id="vPname_Label1" for="vPname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.VPname}" id="vPname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="VP Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="ASM Code" id="aSMcode_Label1" for="aSMcode1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.ASMcode}" id="aSMcode1"
+														required="true">
+													<xp:this.validators>
+														<xp:validateRequired
+															message="ASM Code is required">
+														</xp:validateRequired>
+													</xp:this.validators></xp:inputText>
+												</xp:td>
+												<xp:td></xp:td>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="RAM Name" id="rAMname_Label1" for="rAMname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													style="width:30.0%" styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.RAMname}" id="rAMname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="RAM Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="RSM Name" id="rSMname_Label1" for="rSMname1" style="font-weight:bold">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.RSMname}" id="rSMname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="RSM Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+												<xp:td></xp:td>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="MD Name" id="mDname_Label1" for="mDname1">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{areaConfigDoc.MDname}" id="mDname1"
+														required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="MD Name is required">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:typeAhead
+															mode="full" minChars="1" ignoreCase="true">
+															<xp:this.valueList><![CDATA[#{javascript:@DbColumn(database.getServer()+"!!names.nsf","($VIMPeople)",1)}]]></xp:this.valueList>
+														</xp:typeAhead>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											
+
+
+
+
+
+										</xp:table>
+									</xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='filter' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='40e' unid='842426969780C086652577980029A5DF' sequence='22'>
+<created><datetime>20100908T130454,39+0530</datetime></created>
+<modified><datetime>20140204T114953,45+0530</datetime></modified>
+<revised><datetime>20140204T114953,44+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114953,44+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160221,12+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev2/O=org</name><name>CN=Vasan Dev1/O=org</name><name
+>CN=Vasan Dev2/O=org</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=User Three/O=Maargasystems</name><name>CN=Administrator Maargasystems/O=Maargasystems</name><name
+>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$SiteMapList' sign='true'>
+<rawitemdata type='1a'>
+AQYBAAEAAgBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAACAEgAZAABDAAAZQAAAAAAAAAUAAAAMgAAAAAAAAAPAAAAAAAAAA8A
+AwACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFICAgICBNeSBEaXNjb3VudHMAAQD2
+/y8AAAAAAAMAAgANAAAAAAAAAAAAAAAAAAAAAAAAAAAAdndCeVJlcXVlc3Rvcj8ABWNvbnRlbnRG
+cmFtZQAABU15IERpc2NvdW50cwBIAFgAAQwAAGYAAAAAAAAAGQAAADAAAAAAAAAADwAAAAAAAAAA
+AAMAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSAgICAgQXdhaXRpbmcgQXBwcm92
+YWwAAQD2/y4AAAAAAAMAAgAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAdndCeUFwcHJvdmVyAAVjb250
+ZW50RnJhbWUA
+</rawitemdata></item>
+<item name='$TITLE'><textlist><text>olMyRecords</text><text>olMyRecords</text></textlist></item>
+<item name='$Flags'><text>m</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$POID'><datetime dst='true'>20111126T111941,47+02</datetime></item></note>
+

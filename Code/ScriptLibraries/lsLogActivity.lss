@@ -1,0 +1,72 @@
+'++LotusScript Development Environment:2:5:(Options):0:74
+%REM
+	Library lsLogActivity
+	Created Sep 3, 2010 by Vasan Dev1/org
+	Description: Comments for Library
+%END REM
+Option Public
+Option Declare
+
+
+'++LotusScript Development Environment:2:5:(Forward):0:1
+Declare Sub Initialize()
+Declare Function logInit()
+Declare Function logUpdate(activity As string)
+Declare Function setDebugFlag(flag As Boolean)
+
+'++LotusScript Development Environment:2:5:(Declarations):0:10
+ Dim session As  NotesSession
+ Dim currDB As NotesDatabase
+ Dim logView As NotesView
+ Dim logDoc As NotesDocument
+ Dim IsDebug As Boolean
+
+'++LotusScript Development Environment:2:2:Initialize:1:10
+Sub Initialize()
+ 
+ Set session=New notessession
+ Set currDB=session.currentDatabase
+ IsDebug=false
+   
+End Sub
+
+
+'++LotusScript Development Environment:2:1:logInit:5:8
+%REM
+	Function logInit
+	Description: Comments for Function
+%END REM
+Function logInit()
+	Set logDoc=currDB.Createdocument()
+	If IsDebug Then 	
+	Call logDoc.Replaceitemvalue("Form", "logForm")
+	End if
+End Function
+
+
+'++LotusScript Development Environment:2:1:logUpdate:5:8
+%REM
+	Function logUpdate
+	Description: Comments for Function
+%END REM
+Function logUpdate(activity As string)
+	If IsDebug Then 
+		Dim buffer As String
+		buffer=logDoc.Getitemvalue("log")(0)
+		activity=buffer & Chr(13) & activity
+		Call logDoc.Replaceitemvalue("log", activity)
+		Call logDoc.Save(True,False)
+	End if
+End Function
+
+
+
+'++LotusScript Development Environment:2:1:setDebugFlag:5:8
+%REM
+	Function setDebugFlag
+	Description: Comments for Function
+%END REM
+Function setDebugFlag(flag As Boolean)
+	'IsDebug= flag
+	IsDebug= False
+End Function

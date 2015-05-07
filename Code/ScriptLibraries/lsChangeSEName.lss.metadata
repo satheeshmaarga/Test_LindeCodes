@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="filter" maintenanceversion="1.0" replicaid="65257C740039E3BC" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="5b2" sequence="17" unid="A2EA3CED98EE8718652578F9001E7F98">
+<created><datetime>20110827T110307,44+0530</datetime></created>
+<modified><datetime>20140204T114950,46+0530</datetime></modified>
+<revised><datetime>20140204T114950,45+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114950,45+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160223,10+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=User One/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name="$TITLE" sign="true"><text>lsChangeSEName</text></item>
+<item name="$PublicAccess" sign="true"><text>1</text></item>
+
+
+<item name="$Flags"><text>s34Q</text></item>
+<item name="$POID"><datetime dst="true">20111126T111939,22+02</datetime></item></note>

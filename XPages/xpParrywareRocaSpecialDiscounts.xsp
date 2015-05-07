@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+
+
+
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAppPage";}]]></xp:this.afterPageLoad>
+	<xp:this.data>
+		<xp:dominoDocument var="specialDiscount"
+			formName="SpecialDiscount">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td
+				style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td>
+							<xp:table style="width:99.0%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+										<xc:ccParrywareLeftMenu></xc:ccParrywareLeftMenu>
+									</xp:td>
+									<xp:td valign="top">
+										<xp:table
+											style="width:100.0%">
+											<xp:tr>
+												<xp:td colspan="6"
+													style="text-align:center">
+													<xp:label
+														value="New Special Discount" id="label1">
+													</xp:label>
+												</xp:td>
+												
+												
+												
+												
+												
+											</xp:tr>
+											<xp:tr>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Proposal Number" id="label2">
+													</xp:label></xp:td>
+												<xp:td>
+													<xp:inputText value="#{specialDiscount.txtproposalno}" id="txtproposalno1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Category" id="label27">
+													</xp:label></xp:td>
+												<xp:td><xp:label value="Label" id="label28">
+													</xp:label></xp:td>
+												<xp:td><xp:label value="Label" id="label29">
+													</xp:label></xp:td>
+												<xp:td><xp:label value="Label" id="label30">
+													</xp:label></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Order Type" id="label3">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.cOrderType}" id="cOrderType1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="PW Sanware" id="label26">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.nmpws}" id="nmpws1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText></xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdpws}" id="nmdpws1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText></xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadpws}" id="nmadpws1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="ASM" id="label4">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.cAsm}" id="cAsm1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="JP Sanware" id="label25">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.nmjps}" id="nmjps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText></xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdjps}" id="nmdjps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText></xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadjps}" id="nmadjps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Sales Executive" id="label5">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.cSalesEx}" id="cSalesEx1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Allied Products" id="label24">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Project Name" id="label6">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtProjectNm}" id="txtProjectNm1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="TAPS" id="label23">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Address Line1" id="label7">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtAddressLine1}" id="txtAddressLine11">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Crestia/Glamour Range" id="label22">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Address Line2" id="label8">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtAddressLine2}" id="txtAddressLine21">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label id="label21">
+													<xp:this.value><![CDATA[Roca Sanware&Tiles(Incl Seat Cover+Fitting)]]></xp:this.value></xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="City/Town" id="label9">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtCityTown}" id="txtCityTown1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Roca Taps" id="label20">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="State" id="label10">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtState}" id="txtState1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Total" id="label19">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Pin-Code" id="label11">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtPin}" id="txtPin1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Remarks/Comments" id="label18">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Tin-Number" id="label12">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtTinNum}" id="txtTinNum1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Customer-Name" id="label17">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Customer-Code" id="label13">
+													</xp:label></xp:td>
+												<xp:td><xp:inputText value="#{specialDiscount.txtCustomerCode}" id="txtCustomerCode1">
+													</xp:inputText></xp:td>
+												<xp:td><xp:label value="Customer PO" id="label16">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td><xp:label value="Price Working File" id="label14">
+													</xp:label></xp:td>
+												<xp:td>
+													<xp:fileUpload
+														id="fileUpload1" value="#{specialDiscount.rtpwf}">
+													</xp:fileUpload></xp:td>
+												<xp:td><xp:label value="Delivery Date" id="label15">
+													</xp:label></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+										</xp:table>
+										<xp:br></xp:br>
+
+										<xp:br></xp:br>
+										<xp:br></xp:br>
+										<xp:br></xp:br>
+										<xp:br></xp:br>
+										<xp:br></xp:br>
+										<xp:table>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Css path:" id="cssPath_Label1" for="cssPath1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.cssPath}" id="cssPath1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Mode:" id="mode_Label1" for="mode1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.mode}" id="mode1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Status:" id="status_Label1" for="status1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.status}" id="status1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Btn source:" id="btnSource_Label1"
+														for="btnSource1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.btnSource}" id="btnSource1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Cur stage:" id="curStage_Label1" for="curStage1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.curStage}" id="curStage1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Rlevel:" id="rlevel_Label1" for="rlevel1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.rlevel}" id="rlevel1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Str status msg:" id="strStatusMsg_Label1"
+														for="strStatusMsg1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.strStatusMsg}"
+														id="strStatusMsg1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Secode:" id="secode_Label1" for="secode1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.secode}" id="secode1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Asm code:" id="asmCode_Label1" for="asmCode1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.asmCode}" id="asmCode1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Category:" id="category_Label1" for="category1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.category}" id="category1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="$$ return:" id="return_Label1" for="return1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.$$Return}" id="return1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt triger:" id="txtTriger_Label1"
+														for="txtTriger1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.txtTriger}" id="txtTriger1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="User_ name:" id="user_Name_Label1"
+														for="user_Name1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.user_Name}" id="user_Name1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Client_ operation:" id="client_Operation_Label1"
+														for="client_Operation1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.Client_Operation}"
+														id="client_Operation1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt owner:" id="txtOwner_Label1" for="txtOwner1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.txtOwner}" id="txtOwner1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txtproposalno:" id="txtproposalno_Label1"
+														for="txtproposalno1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="C order type:" id="cOrderType_Label1"
+														for="cOrderType1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmpws:" id="nmpws_Label1" for="nmpws1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdpws:" id="nmdpws_Label1" for="nmdpws1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadpws:" id="nmadpws_Label1" for="nmadpws1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmjps:" id="nmjps_Label1" for="nmjps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdjps:" id="nmdjps_Label1" for="nmdjps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadjps:" id="nmadjps_Label1" for="nmadjps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmaps:" id="nmaps_Label1" for="nmaps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmaps}" id="nmaps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdaps:" id="nmdaps_Label1" for="nmdaps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdaps}" id="nmdaps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadaps:" id="nmadaps_Label1" for="nmadaps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadaps}" id="nmadaps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt project nm:" id="txtProjectNm_Label1"
+														for="txtProjectNm1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmtaps:" id="nmtaps_Label1" for="nmtaps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmtaps}" id="nmtaps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdtaps:" id="nmdtaps_Label1" for="nmdtaps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdtaps}" id="nmdtaps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadtaps:" id="nmadtaps_Label1" for="nmadtaps1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadtaps}" id="nmadtaps1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt address line1:" id="txtAddressLine1_Label1"
+														for="txtAddressLine11">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmcgr:" id="nmcgr_Label1" for="nmcgr1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmcgr}" id="nmcgr1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdcgr:" id="nmdcgr_Label1" for="nmdcgr1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdcgr}" id="nmdcgr1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadcgr:" id="nmadcgr_Label1" for="nmadcgr1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadcgr}" id="nmadcgr1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt address line2:" id="txtAddressLine2_Label1"
+														for="txtAddressLine21">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmrst:" id="nmrst_Label1" for="nmrst1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmrst}" id="nmrst1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdrst:" id="nmdrst_Label1" for="nmdrst1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdrst}" id="nmdrst1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadrst:" id="nmadrst_Label1" for="nmadrst1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadrst}" id="nmadrst1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt city town:" id="txtCityTown_Label1"
+														for="txtCityTown1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmrts:" id="nmrts_Label1" for="nmrts1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmrts}" id="nmrts1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmdrts:" id="nmdrts_Label1" for="nmdrts1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmdrts}" id="nmdrts1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmadrts:" id="nmadrts_Label1" for="nmadrts1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmadrts}" id="nmadrts1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt state:" id="txtState_Label1" for="txtState1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Nmtotals:" id="nmtotals_Label1" for="nmtotals1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.nmtotals}" id="nmtotals1">
+														<xp:this.converter>
+															<xp:convertNumber></xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt pin:" id="txtPin_Label1" for="txtPin1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt comments:" id="txtComments_Label1"
+														for="txtComments1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.txtComments}"
+														id="txtComments1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt tin num:" id="txtTinNum_Label1"
+														for="txtTinNum1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Dtdelivery:" id="dtdelivery_Label1"
+														for="dtdelivery1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.dtdelivery}" id="dtdelivery1">
+														<xp:this.converter>
+															<xp:convertDateTime
+																type="both" dateStyle="short" timeStyle="short">
+															</xp:convertDateTime>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt customer nm:" id="txtCustomerNm_Label1"
+														for="txtCustomerNm1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													<xp:inputText
+														value="#{specialDiscount.txtCustomerNm}"
+														id="txtCustomerNm1">
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="Txt customer code:" id="txtCustomerCode_Label1"
+														for="txtCustomerCode1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="C sales ex:" id="cSalesEx_Label1"
+														for="cSalesEx1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td>
+													<xp:label
+														value="C asm:" id="cAsm_Label1" for="cAsm1">
+													</xp:label>
+												</xp:td>
+												<xp:td>
+													
+												</xp:td>
+											</xp:tr>
+										</xp:table></xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

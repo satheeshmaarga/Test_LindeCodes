@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='19a' unid='8CF756B2938E8AFC6525778A00192861' sequence='20'>
+<created><datetime>20100825T100447,37+0530</datetime></created>
+<modified><datetime>20140204T114915,88+0530</datetime></modified>
+<revised><datetime>20140204T114915,87+0530</datetime></revised>
+<lastaccessed><datetime>20150414T123201,86+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160219,32+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev2/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=ASMAIL02/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>vwConfigEmail</text></item>
+<item name='$Index' sign='true'><text>/C</text></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+2AACABAAAgB0bwUAAgB0bwMAAgAQAAIAY2MFAAIAY2MDAAIAHAAHAHN1YmplY3QABQAHAHN1Ympl
+Y3QAAwACABQABABib2R5BQAEAGJvZHkDAAUAMAAsAAYAAgACAAcABAAJAAQAdG9jY3N1YmplY3Ri
+b2R5JENvbmZsaWN0JFJFRgQABAAAAD4ABQAEAEZvcm0BAA4AZnJtQ29uZmlnRW1haWwKAgQABQAE
+AEZvcm0BAAUARW1haWwACgIEAB0CBAADAAcAFAAOAAkzUzRTNlM3UzlTMTBT
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+BgAAAABE
+</rawitemdata></item>
+<item name='$ViewFormat' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQAEAAQAiEQCAFZDAAACAAIAEgAAAFAAAQAACAAAAAAAAAAAAAICAAAAVkMAAAIAAgASAAAAUAAB
+AAAIAAAAAAAAAAAAAgIAAABWQwAABwAHAB4AAABQAAEAAAgAAAAAAAAAAAACAgAAAFZDAAAEAAQA
+FgAAAFAAAQAACAAAAAAAAAAAAAICAAAAdG9UbxIAAgAQAAIAdG8FAAIAdG8DAGNjQ0MSAAIAEAAC
+AGNjBQACAGNjAwBzdWJqZWN0U3ViamVjdB4AAgAcAAcAc3ViamVjdAAFAAcAc3ViamVjdAADAGJv
+ZHlCb2R5FgACABQABABib2R5BQAEAGJvZHkDACYABwAAAAEBAAkBAAAKAQEOCgAAKACtKwEBGAAB
+AAAAAAAAAAAAV0MBAQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAFdD
+AQEACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAP//AAAAAAAAAAAAAAAAAABXQwEBAAgAAAAAAAAA
+AAAAAAAAAAAAAAAEAAAAAAD//wAAAAAAAAAAAAAAAAAAV0MBAQAIAAAAAAAAAAAAAAAAAAAAAAAA
+BAAAAAAA//8AAAAAAAAAAAAAAAAAAEIAUQAAAAEA5fH+AAEAudfzAAEAAAAAAAAAAAAAAAAAAQD/
+//8AAQD///8AAAABAAAAAAABAAAAAAABAAAAAAAAAAgAAAAAAAEA
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>PY</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$SelQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAAif8gAAAAAAABABQAZnJtQ29uZmlnRW1haWx8RW1haWw=
+</rawitemdata></item></note>
+

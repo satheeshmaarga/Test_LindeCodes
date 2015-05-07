@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.beforePageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAppPage";}]]></xp:this.beforePageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				&#160;<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+									<xc:ccParrywareLeftMenu></xc:ccParrywareLeftMenu></xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										
+										<xp:text escape="true"
+											id="computedField1" rendered="false">
+										<xp:this.value><![CDATA[#{javascript:@Name("[Abbreviate]",@UserName());}]]></xp:this.value></xp:text>
+										
+										<xp:viewPanel rows="30"
+											id="viewPanel2" var="rowData" viewStyle="width:100.0%">
+											<xp:this.facets>
+												<xp:pager
+													partialRefresh="true" layout="Previous Group Next"
+													xp:key="headerPager" id="pager2">
+												</xp:pager>
+												<xp:viewTitle xp:key="viewTitle" id="viewTitle1" value="Discounts Awaiting My Approval">
+												</xp:viewTitle>
+											</xp:this.facets>
+											<xp:this.data>
+												<xp:dominoView
+													var="vwByApprover" viewName="vwByApprover">
+
+													<xp:this.categoryFilter><![CDATA[#{javascript:@Name("[Abbreviate]",@UserName());}]]></xp:this.categoryFilter>
+												</xp:dominoView>
+											</xp:this.data>
+											<xp:viewColumn
+												columnName="Approver" id="viewColumn8" rendered="false">
+												<xp:viewColumnHeader
+													value="Approver" id="viewColumnHeader8" rendered="false">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Status" id="viewColumn9">
+												<xp:viewColumnHeader
+													value="Status" id="viewColumnHeader9">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Proposal Number" id="viewColumn10">
+												<xp:viewColumnHeader
+													value="Proposal Number" id="viewColumnHeader10">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Project Name" id="viewColumn11">
+												<xp:viewColumnHeader
+													value="Project Name" id="viewColumnHeader11">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Customer Name" id="viewColumn12">
+												<xp:viewColumnHeader
+													value="Customer Name" id="viewColumnHeader12">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Order Type" id="viewColumn13">
+												<xp:viewColumnHeader
+													value="Order Type" id="viewColumnHeader13">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Tin-Number" id="viewColumn14">
+												<xp:viewColumnHeader
+													value="Tin-Number" id="viewColumnHeader14">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+										</xp:viewPanel></xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

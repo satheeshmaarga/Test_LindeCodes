@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.data>
+		<xp:dominoDocument var="discountCategoryDoc"
+			formName="DiscountCategory">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:this.beforePageLoad><![CDATA[#{javascript://check if the user has admin role. If yes proceed else redirect to home page
+	var acl:NotesACL= database.getACL();
+	var entry:NotesACLEntry = acl.getEntry(session.getEffectiveUserName())
+	if (entry==null)	{
+		entry = acl.getEntry(session.getEffectiveUserName())
+	}
+  
+	if (entry==null)	{
+		return false;
+	}
+
+	if (!entry.isRoleEnabled("Admin")){
+		context.redirectToPage("xpParrywareRoca.xsp")
+	}	}]]></xp:this.beforePageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td
+				style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+										<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN>
+									</xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:panel
+											styleClass="parrywareActionBar" style="text-align:center">
+
+
+											&#160;
+											<xp:label
+												value="Discount Configuration Document" id="label1"
+												style="font-weight:bold">
+											</xp:label>
+										</xp:panel>
+
+
+										<xp:br></xp:br>
+
+
+										<xp:image url="/Edit Image.jpg"
+											id="image1">
+											<xp:this.rendered><![CDATA[#{javascript:try {
+	return!(discountCategoryDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered>
+											<xp:eventHandler
+												event="onclick" submit="true" refreshMode="complete"
+												immediate="true">
+												<xp:this.action><![CDATA[#{javascript:try	{
+	redirectToCurrentDocument(true);	
+} catch(error)	{
+	_dump(error.Message +" occured in page xpParrywareRocaConfigArea when the Edit button is clicked");
+}
+}]]></xp:this.action>
+											</xp:eventHandler>
+										</xp:image>
+										<xp:image url="/Save Image.jpg"
+											id="image3">
+											<xp:this.rendered><![CDATA[#{javascript:
+try {
+	return(discountCategoryDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered>
+											<xp:eventHandler
+												event="onclick" submit="true" refreshMode="complete">
+												<xp:this.action>
+
+													<xp:actionGroup>
+														<xp:save></xp:save>
+
+
+
+														<xp:openPage
+															name="/xpRocaConfigDiscountCategory.xsp">
+														</xp:openPage>
+													</xp:actionGroup>
+												</xp:this.action>
+											</xp:eventHandler>
+										</xp:image>
+										<xp:image url="/Close Image.jpg"
+											id="image2">
+											<xp:eventHandler
+												event="onclick" submit="true" refreshMode="complete"
+												immediate="true">
+												<xp:this.action>
+													<xp:openPage
+														name="/xpRocaConfigDiscountCategory.xsp">
+													</xp:openPage>
+												</xp:this.action></xp:eventHandler>
+										</xp:image>
+										<xp:br></xp:br>
+										<xp:table style="width:100%" styleClass="parrywareDataTables">
+											<xp:tr>
+												<xp:td colspan="2"
+													style="text-align:center"
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Category" id="category_Label1" for="category1" style="font-weight:bold">
+													</xp:label>
+
+
+												</xp:td>
+
+												<xp:td colspan="2" style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Area Head" id="label2" for="category1" style="font-weight:bold">
+														</xp:label>
+													</xp:div></xp:td>
+												
+												<xp:td colspan="2" style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Regional Sales Manager" id="label3"
+															for="category1" style="font-weight:bold">
+														</xp:label>
+													</xp:div></xp:td>
+												
+											</xp:tr>
+											<xp:tr style="text-align:center">
+												<xp:td colspan="2"
+													rowspan="2" style="text-align:center"
+													styleClass="parrywareDataCells">
+
+
+
+
+
+
+
+													<xp:div
+														style="text-align:center">
+														<xp:inputText
+															value="#{discountCategoryDoc.category}" id="category1" style="width:200.0px">
+														</xp:inputText>
+													</xp:div>
+												</xp:td>
+												
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Current" id="label4" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Proposed" id="label5" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Current" id="label6" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Proposed" id="label7" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+											</xp:tr>
+											<xp:tr style="text-align:center">
+												
+												
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.AHcurr}" id="aHcurr1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.AHproposed}" id="aHproposed1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.RSMcurr}" id="rSMcurr1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.RSMproposed}" id="rSMproposed1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+											</xp:tr>
+											<xp:tr style="text-align:center">
+												<xp:td style="text-align:center">
+													
+												<xp:div style="text-align:center">&#160;</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													
+												</xp:td>
+												<xp:td style="text-align:center"></xp:td>
+												<xp:td style="text-align:center"></xp:td>
+												<xp:td style="text-align:center"></xp:td>
+												<xp:td style="text-align:center"></xp:td>
+											</xp:tr>
+											<xp:tr style="text-align:center">
+												<xp:td colspan="2" style="text-align:center">
+													
+												
+													
+												<xp:div
+													style="text-align:center"
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="National Sales Manager" id="label8"
+														for="category1" style="font-weight:bold">
+													</xp:label>
+												</xp:div></xp:td>
+												
+												<xp:td colspan="2" style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Vice President" id="label9" for="category1" style="font-weight:bold">
+														</xp:label>
+													</xp:div></xp:td>
+												
+												<xp:td colspan="2" style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Managing Director" id="label10" for="category1" style="font-weight:bold">
+														</xp:label>
+													</xp:div></xp:td>
+												
+											</xp:tr>
+											<xp:tr style="text-align:center">
+												<xp:td style="text-align:center">
+													
+												<xp:div
+													style="text-align:center"
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Current" id="label11" for="category1">
+													</xp:label>
+												</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													
+												<xp:div
+													style="text-align:center"
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Proposed" id="label14" for="category1">
+													</xp:label>
+												</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Current" id="label12" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Proposed" id="label15" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Current" id="label13" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+												<xp:td style="text-align:center">
+													<xp:div
+														style="text-align:center"
+														styleClass="parrywareLabelCells">
+														<xp:label
+															value="Proposed" id="label16" for="category1">
+														</xp:label>
+													</xp:div></xp:td>
+											</xp:tr>
+											<xp:tr style="text-align:center">
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													
+												<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.NSMcurr}" id="nSMcurr1" style="width:50.0px">
+												</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.NSMproposed}" id="nSMproposed1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.VPcurr}" id="vPcurr1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.VPproposed}" id="vPproposed1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.MDcurr}" id="mDcurr1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+												<xp:td style="text-align:center" styleClass="parrywareDataCells">
+													<xp:div style="text-align:center"><xp:inputText value="#{discountCategoryDoc.MDproposed}" id="mDproposed1" style="width:50.0px">
+													</xp:inputText></xp:div></xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td style="text-align:center">
+													
+												</xp:td>
+												<xp:td style="text-align:center">
+													
+												</xp:td>
+												<xp:td style="text-align:center"></xp:td>
+												<xp:td style="text-align:center"></xp:td>
+												<xp:td style="text-align:center"></xp:td>
+												<xp:td></xp:td>
+											</xp:tr>
+											
+											
+											
+										</xp:table></xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

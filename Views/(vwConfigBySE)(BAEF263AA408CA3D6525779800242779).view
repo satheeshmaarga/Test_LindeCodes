@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='412' unid='BAEF263AA408CA3D6525779800242779' sequence='15'>
+<created><datetime>20100908T120454,01+0530</datetime></created>
+<modified><datetime>20140204T114953,47+0530</datetime></modified>
+<revised><datetime>20140204T114953,46+0530</datetime></revised>
+<lastaccessed><datetime>20150414T123043,34+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160221,14+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev1/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=ASMAIL02/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>(vwConfigBySE)|Area</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+tgACACIAAwAkMTQAAgAFAAAAAAAAAAUABgBTRW5hbWW0AgMAAgAYAAYAU0Vjb2RlBQAGAFNFY29k
+ZQMABQAmACIABAADAAYACQAEACQxNFNFY29kZSRDb25mbGljdCRSRUYEAAQAAAA8AAUABABGb3Jt
+AQANAGZybUNvbmZpZ0FyZWEACgIEAAUABABGb3JtAQAEAEFyZWEKAgQAHQIEAAMABwAUAA4ACTNT
+NFM2UzdTOVMxMFM=
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+HQACAABEiGYHAAADAJhmAAMABgAkMTRTRWNvZGU=
+</rawitemdata></item>
+<item name='$ViewFormat' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQACAA8AiEQCAFZDAwADAAcAMAAAAJ4AAQAACAABAAAAAAAAAAICAABAVkMAAAYABwAaAAAAUAAB
+AAAIAAEAAAAAAAAAAgIAAAAkMTRTRSBOYW1lMAACACIAAwAkMTQAAgAFAAAAAAAAAAUABgBTRW5h
+bWW0AgMABwAMAAUACTBTMEUAU0Vjb2RlU0UgQ29kZRoAAgAYAAYAU0Vjb2RlBQAGAFNFY29kZQMA
+JgAMAAAAAQEACQEAAAoBAQ4KAAABAK0rAQEeAAEAAAAAAAAAAABXQwEBhwgAAAAAAAAAAAAAAAAA
+AAAAAAAEAAAAAAD//wAAAAAAAAAAAAAAAAAAV0MBAYcIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA
+//8AAAAAAAAAAAAAAAAAAEIAUQAAAAEA9OnpAAEA////AAEAYSUjAAAAAAAAAAAAAQD///8AAQD/
+//8AAAABAAAAAAABAAAAAAABAAAAAAAAAAgAAAAAAAEA
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text>Details of area and respective SE,ASM,RSM,NSM,VP &amp; MD</text></item>
+<item name='$Flags'><text>PY</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$SelQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAAif8eAAAAAAABABIAZnJtQ29uZmlnQXJlYXxBcmVh
+</rawitemdata></item>
+<item name='$V5ACTIONS' sign='true'>
+<rawitemdata type='1'>
+vRwBAAAAAQABAAAAQSAAAAAAAAAAAAAACAAFAHn/bAABAP///wABAAAAAAABAAAAAAABAP///wAA
+ACUAAAAAAAAAAAADAAAAAgAACQAAAAAAAAAADEAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPz/OgAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAC+/4wAAAABAAoAHwEAABIALgAAAAAAQ3JlYXRlIE5ldyBQ
+cm9maWxlNgAAACgAAgDoAwAAAAAAAAEAEgBmcm1Db25maWdBcmVhfEFyZWHtAgMABwAMAAUACTBT
+MEUALgAAACAA5wABAAcAW0FkbWluXQABAAQAW0xFXR8CdQIDAAcADAAFAAkwUzBFAF7/OgAAAAAA
+AAAAAB4AAAAAAAAAAAAAAAAAAAAeAAAAHAABABIAQ3JlYXRlIE5ldyBQcm9maWxlAwA=
+</rawitemdata></item></note>
+

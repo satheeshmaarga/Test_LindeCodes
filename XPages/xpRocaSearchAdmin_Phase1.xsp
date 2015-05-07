@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+		<xp:script src="/ssjsCommonFunctions.jss" clientSide="false"></xp:script>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAppPage";}]]></xp:this.afterPageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+									<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN></xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:span rendered="false">Query string: 
+ &#160;
+ </xp:span><xp:text escape="true" id="computedField1" style="color:rgb(0,0,160)" value="#{sessionScope.queryString}" rendered="false"></xp:text><xp:span rendered="false">
+ 
+
+ </xp:span>
+										<xc:ccSearch_1></xc:ccSearch_1>
+										<xp:br></xp:br>
+ <xp:viewPanel rows="30" id="SearchResults" var="rowData">
+ 	<xp:this.facets>
+ 		<xp:pager partialRefresh="true" layout="Previous Group Next"
+ 			xp:key="headerPager" id="pager1">
+ 		</xp:pager>
+ 		<xp:viewTitle xp:key="viewTitle" id="viewTitle1"
+ 			value="Search Results">
+ 		</xp:viewTitle>
+ 	</xp:this.facets>
+ 	<xp:this.data>
+ 		<xp:dominoView var="vwSearch" viewName="vwSearch">
+ 			<xp:this.search><![CDATA[#{javascript:var tmpArray = new Array("");
+var cTerms = 0;
+
+sessionScope.txtProjectNm=@Trim(sessionScope.txtProjectNm)
+sessionScope.txtproposalno=@Trim(sessionScope.txtproposalno)
+sessionScope.txtCustomerNm=@Trim(sessionScope.txtCustomerNm)
+sessionScope.txtCustomerCode=@Trim(sessionScope.txtCustomerCode)
+sessionScope.strStatusMsg=@Trim(sessionScope.strStatusMsg)
+sessionScope.secode=@Trim(sessionScope.secode)
+sessionScope.asmcode=@Trim(sessionScope.asmcode)
+sessionScope.category=@Trim(sessionScope.category)
+
+if(sessionScope.txtProjectNm != null & sessionScope.txtProjectNm != "") {
+	tmpArray[cTerms++] = "(FIELD txtProjectNm = \"" + sessionScope.txtProjectNm + "\")";
+}
+if(sessionScope.txtproposalno != null & sessionScope.txtproposalno != "") {
+	tmpArray[cTerms++] = "(FIELD txtproposalno = \"" + sessionScope.txtproposalno + "\")";
+}
+if(sessionScope.txtCustomerNm != null & sessionScope.txtCustomerNm != "") {
+	tmpArray[cTerms++] = "(FIELD txtCustomerNm = \"" + sessionScope.txtCustomerNm + "\")";
+}
+if(sessionScope.txtCustomerCode != null & sessionScope.txtCustomerCode != "") {
+	tmpArray[cTerms++] = "(FIELD txtCustomerCode = \"" + sessionScope.txtCustomerCode + "\")";
+}
+if(sessionScope.strStatusMsg != null & sessionScope.strStatusMsg != "") {
+	tmpArray[cTerms++] = "(FIELD strStatusMsg = \"" + sessionScope.strStatusMsg + "\")";
+}
+if(sessionScope.secode != null & sessionScope.secode != "") {
+	tmpArray[cTerms++] = "(FIELD secode = \"" + sessionScope.secode + "\")";
+}
+if(sessionScope.asmcode != null & sessionScope.asmcode != "") {
+	tmpArray[cTerms++] = "(FIELD asmcode = \"" + sessionScope.asmcode + "\")";
+}
+if(sessionScope.category != null & sessionScope.category != "") {
+	tmpArray[cTerms++] = "(FIELD category = \"" + sessionScope.category + "\")";
+}
+
+qstring = tmpArray.join(" OR ").trim();
+sessionScope.queryString = qstring; // this just displays the query
+return qstring // this is what sets the search property}]]></xp:this.search>
+ 			<xp:this.categoryFilter><![CDATA[#{javascript:var statusVal = viewScope.selectedTag;
+if(statusVal == null){
+	"--Please Select--"
+}else{
+	statusVal
+}}]]></xp:this.categoryFilter>
+ 		</xp:dominoView>
+ 	</xp:this.data>
+ 	<xp:viewColumn columnName="Project Name" id="viewColumn1">
+ 		<xp:viewColumnHeader value="Project Name"
+ 			id="viewColumnHeader1">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Proposal Number" id="viewColumn2">
+ 		<xp:viewColumnHeader value="Proposal Number"
+ 			id="viewColumnHeader2">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Customer Name" id="viewColumn3">
+ 		<xp:viewColumnHeader value="Customer Name"
+ 			id="viewColumnHeader3">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Customer Code" id="viewColumn4">
+ 		<xp:viewColumnHeader value="Customer Code"
+ 			id="viewColumnHeader4">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="SE Code" id="viewColumn5">
+ 		<xp:viewColumnHeader value="SE Code" id="viewColumnHeader5"></xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="ASM Code" id="viewColumn6">
+ 		<xp:viewColumnHeader value="ASM Code" id="viewColumnHeader6"></xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Status" id="viewColumn7">
+ 		<xp:viewColumnHeader value="Status" id="viewColumnHeader7"></xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Order Type" id="viewColumn8" rendered="false">
+ 		<xp:viewColumnHeader value="Order Type"
+ 			id="viewColumnHeader8" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Tin-Number" id="viewColumn9" rendered="false">
+ 		<xp:viewColumnHeader value="Tin-Number"
+ 			id="viewColumnHeader9" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Category" id="viewColumn10">
+ 		<xp:viewColumnHeader value="Category"
+ 			id="viewColumnHeader10">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Delivery Date" id="viewColumn11" rendered="false">
+ 		<xp:viewColumnHeader value="Delivery Date"
+ 			id="viewColumnHeader11" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Total Amount" id="viewColumn12" rendered="false">
+ 		<xp:viewColumnHeader value="Total Amount"
+ 			id="viewColumnHeader12" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Pw Discount %" id="viewColumn13" rendered="false">
+ 		<xp:viewColumnHeader value="Pw Discount %"
+ 			id="viewColumnHeader13" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="JP Discount %" id="viewColumn14" rendered="false">
+ 		<xp:viewColumnHeader value="JP Discount %"
+ 			id="viewColumnHeader14" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Allied Producs %" id="viewColumn15" rendered="false">
+ 		<xp:viewColumnHeader value="Allied Producs %"
+ 			id="viewColumnHeader15" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Taps Discount %" id="viewColumn16" rendered="false">
+ 		<xp:viewColumnHeader value="Taps Discount %"
+ 			id="viewColumnHeader16" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="Crestia/Glamour Discount%"
+ 		id="viewColumn17" rendered="false">
+ 		<xp:viewColumnHeader value="Crestia/Glamour Discount%"
+ 			id="viewColumnHeader17" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn id="viewColumn18" rendered="false">
+ 		<xp:this.columnName><![CDATA[RocaSanware&Tiles Discount%]]></xp:this.columnName>
+ 		<xp:viewColumnHeader id="viewColumnHeader18" rendered="false">
+ 			<xp:this.value><![CDATA[RocaSanware&Tiles Discount%]]></xp:this.value>
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ 	<xp:viewColumn columnName="RocaTaps Discount%" id="viewColumn19" rendered="false">
+ 		<xp:viewColumnHeader value="RocaTaps Discount%"
+ 			id="viewColumnHeader19" rendered="false">
+ 		</xp:viewColumnHeader>
+ 	</xp:viewColumn>
+ </xp:viewPanel>
+									</xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

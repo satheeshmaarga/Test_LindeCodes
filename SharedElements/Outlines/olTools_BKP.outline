@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='filter' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='37a' unid='0C458BA58A1A591465257798002D249D' sequence='20'>
+<created><datetime>20100908T134304,93+0530</datetime></created>
+<modified><datetime>20140204T114954,23+0530</datetime></modified>
+<revised><datetime>20140204T114954,22+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114954,22+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160220,40+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$SiteMapList' sign='true'>
+<rawitemdata type='1a'>
+AQYBAAEAAQBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAABAEgATwABDAAAZQAAAAAAAAAJAAAALgAAAAAAAAAPAAAAAAAAAAkA
+AwADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFU2VhcmNoAAEA9v8rAAAAAAADAAMA
+CQAAAAAAAAAAAAAAAAAAAAAAAAAAAGZybUV4cG9ydD8ABWNvbnRlbnRGcmFtZQAABVNlYXJjaAA=
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text>olTools</text></item>
+<item name='$Flags'><text>m</text></item>
+<item name='$POID'><datetime dst='true'>20111126T111941,83+02</datetime></item>
+<item name='$TITLE' sign='true'><text>olTools_BKP</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item></note>
+

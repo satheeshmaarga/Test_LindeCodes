@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='402' unid='338659309D44BB6B652577980023608A' sequence='257'>
+<created><datetime>20100908T115624,74+0530</datetime></created>
+<modified><datetime>20140204T114953,37+0530</datetime></modified>
+<revised><datetime>20140204T114953,36+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114953,36+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160221,06+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev2/O=org</name><name>CN=Vasan Dev1/O=org</name><name
+>CN=Vasan Dev2/O=org</name><name>CN=Vasan Dev1/O=org</name><name>CN=Vasan Dev2/O=org</name><name
+>CN=Vasan Dev1/O=org</name><name>CN=Vasan Dev2/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$TITLE' sign='true'><text>fmRocaHomePage</text></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIACAAAAAAAAAAAAAAAAAAAAAAA8P8+AEUAAAABAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAEAAgAAAAAAAQD///8AAAADAAEAAgARAAIARwDw/0IAAQAAAAEAAAAAAAEAAQAAAAAABQAAAAAA
+BQAAAAAAAwABAAAAAAAFAP///wAAAAIADAACAC0AAgAhAAMAAQDx/zsAEQAAAABAAQECAAEAAQAA
+AAAABwAAAAAAAQD///8AAAB0b3BMZWZ0AQD////wAQAACgEAAAAA8D/2/yoAAAAAAAMABwAIAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAUm9jYUxvZ2/x/08AEQAAAABAAQECAAEAAQAAAAAADwAAAAwAAQD/
+//8AAABOYXZpZ2F0aW9uRnJhbWVjb250ZW50RnJhbWUBAP////ABAAAKAQAAAADwP/b/MAAAAAAA
+AwAHAA4AAAAAAAAAAAAAAAAAAAAAAAAAAABwZ1JvY2FMZWZ0TWVudfH/OwARAAAAAEABAQIAAQAB
+AAAAAAAHAAAAAAABAP///wAAAExlZ2VuZHMBAP////ABAAAKAQAAAADwP/b/TQAAAAAAAwAHAAYA
+EAAVAAAAAAAAAAAAQW5kcm9tZWRhL21hYXJnYURUU1xwYXJyeXdhcmV0ZXN0Lm5zZgAAAAAAAAAA
+cGdJY29uP/D/PgABAAAAAQAAAAAAAQABAAAAAAAFAAAAAAAFAAAAAAACAAEAAAAAAAUA////AAAA
+AgAOAAIAWgADAAEA8f88ABEAAAAAQAEBAgABAAEAAAAAAAgAAAAAAAEA////AAAAVG9wUmlnaHQB
+AP////ABAAAKAQAAAADw9v8pAAAAAAADAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAFJvY2FUb3A/
+8f9AABEAAAAAQAEBAgABAAEAAAAAAAwAAAAAAAEA////AAAAY29udGVudEZyYW1lAQD////wAQAA
+CgEAAAAA8Pb/LAAAAAAAAwACAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAB2d0J5U3RhdHVz
+</rawitemdata></item>
+<item name='$Flags'><text>#34CQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.2</text></item></note>
+

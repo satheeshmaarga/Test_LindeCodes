@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='576' unid='B64521FADE36BD58652578B600254424' sequence='17'>
+<created><datetime>20110621T121702,76+0530</datetime></created>
+<modified><datetime>20140204T114950,07+0530</datetime></modified>
+<revised><datetime>20140204T114950,06+0530</datetime></revised>
+<lastaccessed><datetime>20140404T020244,86+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160222,86+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=User One/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=User Three/O=Maargasystems</name><name>CN=Administrator Maargasystems/O=Maargasystems</name><name
+>CN=User Three/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=User Three/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=User Two/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=User Three/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=User Two/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>vw_mktgAttachments</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+VgAFACAAHAADAAUACQAEAGFGaWxlJENvbmZsaWN0JFJFRgQABAAAACQABQAEAEZvcm0BAAwAZnJt
+TUtUR0ZpbGVzCgIEAAQAAwAHAAwABQAJM1M0UwA=
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+BgAAAABE
+</rawitemdata></item>
+<item name='$ViewFormat' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQACAAIACAAAAFZDAAAFAAYAAAAAAFAAAQAACgAAAAAAAAAAAAICAAAAVkMAAAIABgAKAAoAUAAB
+AAAKAAAAAAAAAAAAAgIAAABhRmlsZUF0dGFjaCQxZG9jIG5vCgAAAAgAkgADAAEFAQAEAH9BMP8m
+AAEAAAABAQAJAQAACgEBDgoAAAEArSsBAAEAAQAAAAAAAAAAAFdDAQEACQAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAABXQwEBAAkAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAD/
+/wAAAAAAAAAAAAAAAAAAQgAAAAAAAQD///8ABQD///8AAQAAAAAAAAAAAAAAAAABAP///wABAP//
+/wAAAAEAAAAAAAEAAAAAAAEAAAAAAAAACAAAAAAAAQA=
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.2</text></item>
+<item name='$SelQuery' sign='true'>
+<rawitemdata type='f'>
+gQYAAAAAif8YAAAAAAABAAwAZnJtTUtUR0ZpbGVz
+</rawitemdata></item>
+<item name='$Flags'><text>Y</text></item></note>
+

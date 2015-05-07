@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='5be' unid='3BEBEB46298B0B496525794C004962C3' sequence='23'>
+<created><datetime>20111118T185134,11+0530</datetime></created>
+<modified><datetime>20140204T114950,52+0530</datetime></modified>
+<revised><datetime>20140204T114950,51+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114950,51+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160223,16+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name
+>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$HTMLCode' sign='true'>
+<rawitemdata type='1'>
+X/8QAAIADwAHAAAAAAAAAA==
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Info' sign='true'>
+<rawitemdata type='1'>
+hhgBAIAAAAAAgAAAAQABAP///wAQAAAA
+</rawitemdata></item>
+<item name='$Flags'><text/></item>
+<item name='$$ScriptName' summary='false' sign='true'><text>frmremarkcomments</text></item>
+<item name='remarkcomments' placeholder='true'>
+<rawitemdata type='0'>
+</rawitemdata></item>
+<item name='$Fields'><text>remarkcomments</text></item>
+<item name='$Body' sign='true'>
+<rawitemdata type='1'>
+gQKC/1oAAQAAAAAAAAAAAKAFAACgBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAJSHAAAAAAAAAAAAAAAAAQAAAAQAAACDBAEAhf8IAAEAAAqBAoL/WgACAAAA
+AAAAAAAAOAQAADgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA
+AAAAFIQ4BAAAOAQAAAAAZAABAAAABAAAAIMEAgDdBgEA+//7/ywAAAAAAAEBAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAEAAAAAAAAAAAAAAFz/PgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAOAAAAAAAAAAEAAAoAAAAAAQAAAAAA3gYBAPv/ow44BCgAPAAAAAAAAgCkEgAAOARYIAAA
+AAIAAAEBAACBAoL/WgADAAAAAAAAAAAAOARYIDgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAhgEAAAAAVIcAAAAAAAAAAAAAAAABAAAABAAAAIMEAwCF/wgAAQAACt0G
+AAD3//f/JAABAACAAAAgHMAGAAAAAAAAAABkAAAAAAAAAAAAAAAAAP7/UAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAsP8UAAAAAACAAAAAAAAAAAAAAACK/zIAigAABQAwAgAAAAAAAAIBAAAKAAAAAAAAAAAO
+AAAAAAByZW1hcmtjb21tZW50c9IIAQAAAAAA0ggJAP///wDeBgAA9/+F/wgAAQAACqUGAAAAAIEC
+gwQCAIX/CAABAAAK
+</rawitemdata></item>
+<item name='$TITLE' sign='true'><text>frmreworkcomments</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5.2</text></item></note>
+

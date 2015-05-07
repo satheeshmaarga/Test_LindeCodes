@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="65257C740039E3BC" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="31e" sequence="173" unid="C7164DBB9915535665257793004392BC">
+<created><datetime>20100903T174804,76+0530</datetime></created>
+<modified><datetime>20140204T114954,88+0530</datetime></modified>
+<revised><datetime>20140204T114954,87+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114954,87+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160219,94+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev1/O=org</name><name>CN=Vasan Dev2/O=org</name><name>CN=Vasan Dev1/O=org</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name="$Flags"><text>gC~4K</text></item>
+<item name="$TITLE"><text>xpParrywareRoca.xsp</text></item>
+
+
+
+<item name="$FileNames" sign="true"><text>xpParrywareRoca.xsp</text></item>
+
+
+<item name="$DesignerVersion" sign="true"><text>8.5</text></item>
+
+</note>

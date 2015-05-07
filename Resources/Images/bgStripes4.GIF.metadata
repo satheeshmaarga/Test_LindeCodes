@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="65257C740039E3BC" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="21a" sequence="14" unid="44790B50618EE14A6525778C0037C3F6">
+<created><datetime>20100827T153906,46+0530</datetime></created>
+<modified><datetime>20140204T114954,98+0530</datetime></modified>
+<revised><datetime>20140204T114954,97+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114954,97+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160219,66+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Balamurugan Kuppuswamy/O=Maargasystems</name><name>CN=Alex/O=Maargasystems</name><name>CN=Training/O=Maargasystems</name><name>CN=Alex/O=Maargasystems</name><name>CN=Vasan Dev1/O=org</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$ImageNames" sign="true"><text>wStripes.GIF</text></item>
+<item name="$IsYes" sign="true"><text>1</text></item>
+<item name="$Flags"><text>34CiQw</text></item>
+
+<item name="$HideInfo" sign="true" summary="false"><datetime>20040515T215859,60+02</datetime></item>
+<item name="$TITLE" sign="true"><textlist><text>bgStripes4.GIF</text><text>Stripes4</text></textlist></item>
+<item name="$DesignerVersion" sign="true"><text>7</text></item></note>

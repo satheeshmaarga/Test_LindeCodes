@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="65257C740039E3BC" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="58a" sequence="8" unid="D5B76C3F16963082652578E60037D86E">
+<created><datetime>20110808T153958,86+0530</datetime></created>
+<modified><datetime>20140204T114950,17+0530</datetime></modified>
+<revised><datetime>20140204T114950,16+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114950,16+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160222,96+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=User One/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name="$TITLE"><text>upload.gif</text></item>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime>20110808T153827,49+0530</datetime></item>
+<item name="$ImageNames" sign="true"><text>upload.gif</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.2</text></item>
+<item name="$Flags"><text>34CiQ</text></item></note>

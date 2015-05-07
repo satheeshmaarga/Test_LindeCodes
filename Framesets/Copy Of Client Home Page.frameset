@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='65257C740039E3BC'>
+<noteinfo noteid='3e2' unid='77B3C8CBC75551A4652577980020E23E' sequence='14'>
+<created><datetime>20100908T112910,70+0530</datetime></created>
+<modified><datetime>20140204T114954,29+0530</datetime></modified>
+<revised><datetime>20140204T114954,28+0530</datetime></revised>
+<lastaccessed><datetime>20140204T114954,28+0530</datetime></lastaccessed>
+<addedtofile><datetime>20140203T160220,90+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Vasan Dev2/O=org</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Andromeda Admin/O=maarga</name><name>CN=Andromeda/O=maarga</name><name
+>CN=Karthikeyan A/O=maarga</name><name>CN=Andromeda/O=maarga</name><name>CN=Andromeda Admin/O=maarga</name><name
+>CN=Andromeda/O=maarga</name><name>CN=Jayasankar S/O=UCC</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User Three/O=Maargasystems</name><name
+>CN=Administrator Maargasystems/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Dev852/O=Maargasystems</name><name>CN=User One/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=User Two/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=Dev852/O=Maargasystems</name><name
+>CN=Vijayakumar Oorappan/O=Maargasystems</name><name>CN=EMNOTES01/O=UCC</name><name
+>CN=Admin/O=MaargaDev</name></updatedby>
+<wassignedby><name>CN=Admin/O=MaargaDev</name></wassignedby>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$FrameSet' sign='true'>
+<rawitemdata type='1'>
+7/8YAAIACQAAAAAAAAAAAAAAAAAAAAAA8P8+AEUAAAABAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAA
+AAIAAQAAAAAAAQBjJSMAAAABADkAAgBZAAMAAQDw/z4AAQAAAAEAAAAAAAEAAQAAAAAABQAAAAAA
+BQAAAAAAAQACAAAAAAAFAGMlIwAAAAMAAQADABcAAwBNAPH/OwARAAAAAEABAQIAAQABAAAAAAAH
+AAAAAAABAGMlIwAAAHRvcExlZnQBAP///ygBAAAJAQD///8oP/b/JgAAAAAAAwAHAAQAAAAAAAAA
+AAAAAAAAAAAAAAAAAABMb2dv8f88ABEAAAAAQAEBAgABAAEAAAAAAAgAAAAAAAEAYyUjAAAAVG9w
+UmlnaHQBAP///ygBAAAKAQAAAAAo9v8nAAAAAAADAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAHBn
+VG9wP/D/PgABAAAAAQAAAAAAAQABAAAAAAAFAAAAAAAFAAAAAAABAAIAAAAAAAUAYyUjAAAAAwAB
+AAIAFwACAE0A8P8+AAEAAAABAAAAAAABAAEAAAAAAAUAAAAAAAUAAAAAAAIAAQAAAAAABQBjJSMA
+AAADAAEAAwABAAMAAQDx/08AEQAAAABAAQECAAEAAQAAAAAADwAAAAwAAQBjJSMAAABOYXZpZ2F0
+aW9uRnJhbWVjb250ZW50RnJhbWUBAP///ygBAAAJAQD///8oP/b/LQAAAAAAAwAHAAsAAAAAAAAA
+AAAAAAAAAAAAAAAAAABwZ05vdGVzTGluaz/x/zsAEQAAAABAAQECAAEAAQAAAAAABwAAAAAAAQBj
+JSMAAABUb3BEb3duAQD///8oAQAACgEAAAAAKD/2/ycAAAAAAAMABwAFAAAAAAAAAAAAAAAAAAAA
+AAAAAAAATG9nbzE/8f9AABEAAAAAQAEBAgABAAEAAAAAAAwAAAAAAAEAYyUjAAAAY29udGVudEZy
+YW1lAQD///8oAQAACQEA////KPb/MwAAAAAAAwACABEAAAAAAAAAAAAAAAAAAAAAAAAAAAB2d1By
+b2plY3REaXNjb3VudD8=
+</rawitemdata></item>
+<item name='$Flags'><text>#34CQ</text></item>
+<item name='$DesignerVersion' sign='true'><text>8.5</text></item>
+<item name='$TITLE' sign='true'><text>Copy Of Client Home Page</text></item></note>
+

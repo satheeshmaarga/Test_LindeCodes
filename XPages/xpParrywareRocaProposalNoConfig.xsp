@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAdminPage"}]]></xp:this.afterPageLoad>
+	<xp:this.data>
+		<xp:dominoDocument var="proposalNoConfigDoc"
+			formName="frmConfigProposalNumber" action="openDocument">
+		</xp:dominoDocument>
+	</xp:this.data>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td
+				style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+										<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN>
+									</xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:panel
+											styleClass="parrywareActionBar" style="text-align:center">
+
+
+											&#160;
+											<xp:label
+												value="Proposal Number Configuration" id="label1" style="font-weight:bold">
+											</xp:label>
+										</xp:panel>
+										
+										
+										<xp:br></xp:br>
+										
+										
+										<xp:image url="/Edit Image.jpg" id="image1">
+										<xp:this.rendered><![CDATA[#{javascript:try {
+	return!(proposalNoConfigDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered>
+										<xp:eventHandler event="onclick"
+											submit="true" refreshMode="complete" immediate="true">
+											<xp:this.action><![CDATA[#{javascript:try	{
+	redirectToCurrentDocument(true);	
+} catch(error)	{
+	_dump(error.Message +" occured in page xpParrywareRocaConfigArea when the Edit button is clicked");
+}
+}]]></xp:this.action>
+										</xp:eventHandler></xp:image><xp:image url="/Save Image.jpg" id="image3">
+										<xp:this.rendered><![CDATA[#{javascript:
+try {
+	return(proposalNoConfigDoc.isEditable())
+}	catch	(error)	{
+	//do nothing
+}}]]></xp:this.rendered><xp:eventHandler event="onclick" submit="true" refreshMode="complete">
+	<xp:this.action>
+
+		<xp:actionGroup>
+			<xp:save></xp:save>
+
+
+
+
+			<xp:openPage name="/xpRocaConfigProposalNumber.xsp"></xp:openPage>
+		</xp:actionGroup>
+	</xp:this.action></xp:eventHandler></xp:image><xp:image url="/Close Image.jpg" id="image2">
+										<xp:eventHandler event="onclick" submit="true" refreshMode="complete" immediate="true">
+											<xp:this.action>
+												<xp:openPage
+													name="/xpRocaConfigProposalNumber.xsp">
+												</xp:openPage>
+											</xp:this.action></xp:eventHandler></xp:image>
+										
+										<xp:br></xp:br>
+										
+										<xp:table
+											style="width:371.0px" styleClass="parrywareDataTables">
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Year:" id="txtYear_Label1" for="txtYear1">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{proposalNoConfigDoc.txtYear}" id="txtYear1"
+														required="true" readonly="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="Provide the Year Value">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:this.converter>
+															<xp:convertNumber
+																type="number">
+															</xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+											<xp:tr>
+												<xp:td
+													styleClass="parrywareLabelCells">
+													<xp:label
+														value="Proposal Number" id="txtConfigPN_Label1"
+														for="txtConfigPN1">
+													</xp:label>
+												</xp:td>
+												<xp:td
+													styleClass="parrywareDataCells">
+													<xp:inputText
+														value="#{proposalNoConfigDoc.txtConfigPN}"
+														id="txtConfigPN1" required="true">
+														<xp:this.validators>
+															<xp:validateRequired
+																message="Provide the Proposal Number">
+															</xp:validateRequired>
+														</xp:this.validators>
+														<xp:this.converter>
+															<xp:convertNumber
+																type="number">
+															</xp:convertNumber>
+														</xp:this.converter>
+													</xp:inputText>
+												</xp:td>
+											</xp:tr>
+										</xp:table></xp:td></xp:tr></xp:table></xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" styleClass="homePage"
+	xmlns:xc="http://www.ibm.com/xsp/custom"> 
+
+	<xp:this.resources>
+		<xp:styleSheet href="/parrywareRocaSkyWalk.css"></xp:styleSheet>
+	</xp:this.resources>
+	<xp:this.afterPageLoad><![CDATA[#{javascript:sessionScope.pageType="parrywareAdminPage"}]]></xp:this.afterPageLoad>
+	<xp:this.beforePageLoad><![CDATA[#{javascript://check if the user has admin role. If yes proceed else redirect to home page
+	var acl:NotesACL= database.getACL();
+	var entry:NotesACLEntry = acl.getEntry(session.getEffectiveUserName())
+	if (entry==null)	{
+		entry = acl.getEntry(session.getEffectiveUserName())
+	}
+  
+	if (entry==null)	{
+		return false;
+	}
+
+	if (!entry.isRoleEnabled("Admin")){
+		context.redirectToPage("xpParrywareRoca.xsp")
+	}	}]]></xp:this.beforePageLoad>
+	<xp:table style="width:100%">
+		<xp:tr>
+			<xp:td></xp:td>
+			<xp:td style="height:5px">
+				<xp:br></xp:br>
+			</xp:td>
+			<xp:td></xp:td>
+		</xp:tr>
+		<xp:tr>
+			<xp:td style="width:auto">
+				<xp:br id="br1"></xp:br>
+			</xp:td>
+			<xp:td style="width:1000.0px;background-color:rgb(255,255,255)">
+				<xp:table style="width:100%">
+					<xp:tr>
+						<xp:td>
+							<xc:ccParrywareTopMenu></xc:ccParrywareTopMenu>
+						</xp:td>
+					</xp:tr>
+					<xp:tr>
+						<xp:td style="width:%">
+							<xp:table style="width:100%">
+								<xp:tr>
+									<xp:td style="width:200.0px"
+										valign="top">
+
+
+									<xc:ccParrywareLeftMenuADMIN></xc:ccParrywareLeftMenuADMIN></xp:td>
+									<xp:td valign="top">
+										<xp:br></xp:br>
+										<xp:viewPanel rows="30"
+											id="viewPanel1" viewStyle="width:100.0%" pageName="/xpParrywareRocaConfigArchive.xsp">
+											<xp:this.facets>
+												<xp:pager
+													partialRefresh="true" layout="Previous Group Next"
+													xp:key="headerPager" id="pager1">
+												</xp:pager>
+												<xp:viewTitle
+													xp:key="viewTitle" id="viewTitle1"
+													value="Archiev Configuration">
+												</xp:viewTitle>
+											</xp:this.facets>
+											<xp:this.data>
+												<xp:dominoView
+													var="archive" viewName="Archive">
+												</xp:dominoView>
+											</xp:this.data>
+											<xp:viewColumn
+												columnName="Db Path" id="viewColumn2" displayAs="link" openDocAsReadonly="true">
+												<xp:viewColumnHeader
+													value="Db Path" id="viewColumnHeader2">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Attachment Archive" id="viewColumn1">
+												<xp:viewColumnHeader
+													value="Attachment Archive" id="viewColumnHeader1">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											
+											<xp:viewColumn
+												columnName="OneDefault" id="viewColumn3">
+												<xp:viewColumnHeader
+													value="OneDefault" id="viewColumnHeader3">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Archive Path" id="viewColumn4">
+												<xp:viewColumnHeader
+													value="Archive Path" id="viewColumnHeader4">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+											<xp:viewColumn
+												columnName="Archive Days" id="viewColumn5">
+												<xp:viewColumnHeader
+													value="Archive Days" id="viewColumnHeader5">
+												</xp:viewColumnHeader>
+											</xp:viewColumn>
+										</xp:viewPanel>
+									</xp:td>
+								</xp:tr>
+							</xp:table>
+						</xp:td>
+					</xp:tr>
+				</xp:table>
+			</xp:td>
+			<xp:td style="width:auto">
+				<xp:br id="br3"></xp:br>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>
