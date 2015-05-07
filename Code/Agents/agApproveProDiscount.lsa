@@ -55,8 +55,8 @@ qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
 qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
 qqqqqqqqqqqqqqqqqqqqqqqq
 </rawitemdata></item>
-<item name='$AssistAction' sign='true'>
-<rawitemdata type='10'>
+<item name='$AssistAction' sign='false'>
+<rawitemdata type='15'>
 gQKF/3vcAAAAAG/cAAAnKytMb3R1c1NjcmlwdCBEZXZlbG9wbWVudCBFbnZpcm9ubWVudDoyOjU6
 KE9wdGlvbnMpOjA6NzQKJVJFTQoJQWdlbnQgYWdlbnRRdWVyeVNhdmUKCUNyZWF0ZWQ6IEF1ZyAx
 OSwgMjAxMCBieSBHbmFuYXN1cml5YW4gQQoJQE1vZGlmaWVkIDogQXVndXN0LTA1LTIwMTEuCglA
